@@ -1,0 +1,63 @@
+<template name="search_report">
+  <div class="row" style="padding:20px">
+    <div class="center-align">
+      <input name="group1" type="radio" id="radio_todos" />
+      <label for="radio_todos">Todos</label>
+      <input name="group1" type="radio" id="radio_faltas" />
+      <label for="radio_faltas">Faltas</label>
+      <input name="group1" type="radio" id="radio_retardos" />
+      <label for="radio_retardos">Retardos</label>
+      <input name="group1" type="radio" id="radio_asistencias" />
+      <label for="radio_asistencias">Asistencias</label>
+      <input name="group1" type="radio" id="radio_excepciones" />
+      <label for="radio_excepciones">Excepciones</label>
+      <input name="group1" type="radio" id="radio_incompleto" />
+      <label for="radio_incompleto">Salidas Anticipadas</label>
+    </div>
+    <br>
+    <table class="responsive-table striped bordered">
+      <thead>
+        <tr>
+          <th>
+          <a class="waves-effect waves-light btn-small center-align" id="CleanLocation">
+              <i class="material-icons right">delete_sweep</i>
+          </a>
+          Localidad</th>
+          <th>
+            <a class="waves-effect waves-light btn-small center-align" id="CleanCompany">
+                <i class="material-icons right">delete_sweep</i>
+            </a>
+            Compañia</th>
+          <th>
+            <a class="waves-effect waves-light btn-small center-align" id="CleanDeptos">
+                <i class="material-icons right">delete_sweep</i>
+            </a>
+            Departamento</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+              <select class="browser-default" id="LocationSelectX">
+                <option value="" disabled selected>Seleccione una opción x</option>
+              </select>
+          </td>
+          <td>
+            <select  class="browser-default" id="CompanySelectX">
+              <option value="" disabled selected>Seleccione una opción x</option>
+            </select>
+          </td>
+          <td>
+            <select class="browser-default" id="DepartmentSelectX">
+              <option value="" disabled selected>Seleccione una opción x</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    {{>tabularFilterReports}}
+    <div class="center-align">
+      <a class="waves-effect waves-light btn-large center-align" id="Search"><i class="material-icons right">search</i>Buscar</a>
+    </div>
+  </div>
+</template>

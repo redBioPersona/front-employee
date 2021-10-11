@@ -1,0 +1,32 @@
+<template name="ask_meal">
+<div id="modal_ask_meal" class="modal fade" style="border-radius: 10px 10px;">
+  <div class="modal-header" style="color:#fff; padding:9px 15px; border-bottom:1px solid #eee; background-color: #73558c;align:center">
+    <h5>¿ Desea Imprimir ticket de Alimentos ?</h5>
+  </div>
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s12 yellow lighten-5 black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+        <h5>{{ticket_name}}</h5>
+        <h6 class="{{otros}}" id="InstruccionesImpresion">Porfavor seleccione el Restaurante de su preferencia</h6>
+        <h6 id="RestSel"></h6>
+        <select class="Restauranteselect" id="RestaurantSelectX">
+          <option value="" disabled selected>Seleccione una opción x</option>
+        </select>
+        <br><br><br><br><br><br>
+        <div class="row">
+          <div class="col s4">
+            <a class="btn waves-effect waves-light btn-large green darken-2" id="yes_print"><i class="material-icons right">local_printshop</i>Si, Imprimir</a>
+          </div>
+          <div class="col s4">
+            <a class="btn waves-effect waves-light btn-large light-blue accent-4" id="cancel_print"><i class="material-icons right">cancel</i>Después</a>
+          </div>
+          <div class="col s4">
+            <a class="btn waves-effect waves-light btn-large red darken-2" id="no_print"><i class="material-icons right">delete_sweep</i>No, Imprimir</a>
+          </div>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+</template>

@@ -1,0 +1,22 @@
+<template name="Tracking">
+  <div class="camera-overlay">
+    {{! used to make the background dark}}
+  </div>
+  <div class="camera-popup {{#if permissionDeniedError}}camera-popup-wide{{/if}}">
+    {{#if error}}
+      {{#if permissionDeniedError}}
+        {{> permissionDenied}}
+      {{else}}
+        {{#if browserNotSupportedError}}
+          {{> genericError message="Sorry, this browser is currently not supported for camera functionality."}}
+        {{else}}
+          {{> genericError message="There was an error accessing the camera."}}
+        {{/if}}
+      {{/if}}
+    {{else}}
+      <video id="video" width="480px" height="360px"  class="{{#if waitingForPermission}}hidden{{/if}}" preload autoplay loop muted> </video>
+      <canvas id="canvas" width="480px" height="360px" style="padding:0px;position:absolute;z-index:2; top:0px; left:0px;"></canvas>
+      <canvas id="canvasvideo" width="640px" height="480px" style="padding:0px;display:none"></canvas>
+    {{/if}}
+  </div>
+</template>

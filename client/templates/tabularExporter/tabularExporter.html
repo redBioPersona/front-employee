@@ -1,0 +1,11 @@
+<template name="tabularExporter">
+  <a id="btn-exporta" class="btn btn-exporta center">
+    {{#if isDownloading}}
+    <span style="font-size:12px;word-wrap:normal;">ESPERE...
+        <i class="fa fa-spinner fa-spin" style='font-size:12px;color:#FFFFFF;'></i>
+    </span>
+    {{else}}
+    Exportar
+    {{/if}}
+  </a>
+</template>

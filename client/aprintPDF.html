@@ -1,0 +1,10 @@
+<template name="print_pdf_template">
+     <i id="{{this.fileId}}" class="tiny blue-text js-print show-help material-icons">print</i>
+      {{#if showMessage}}
+         <div class="yellow lighten-3 black-text z-depth-3" style="padding:5px;5px;5px;5px;position:absolute;align:left;z-index:200;border-radius:10px;overflow:visible;">
+             <!-- Genera y descarga una versión del archivo <span style="font-weight:bold">{{nombreArchivo}}</span> con permisos para impresión. -->
+             Imprime este archivo
+         </div>
+     {{/if}}
+     <!--  -->
+</template>

@@ -1,0 +1,344 @@
+<template name="orionMaterializeLayout_XP">
+  <link href="/iconfont/material-icons.css" rel="stylesheet">
+<!-- <script src="https://cdn.polyfill.io/v1/polyfill.min.js"></script>-->
+    {{# if dictionaryReady }}
+      {{#if currentUser}}
+  <div class="white red-text center z-depth-3" style="z-index:1000">
+    {{>connectionBanner}}
+  </div>
+
+<!--COLOR DE EL CUERPO  -->
+  <div class="orion-materialize-admin {{colorBody}}" style="background:url({{colorBody}})">
+    <div class="sidebar right">
+      {{# if dictionaryReady }} {{> orionMaterializeSidebar_XP }} {{/ if }}
+    </div>
+    <main class="admin-content">
+      {{# if dictionaryReady }} {{> yield }} {{/ if }}
+      <br> <br>
+    </main>
+
+<!-- COLOR DEL FOOTER -->
+    <footer class="page-footer {{colorFooter}}">
+      <div class="footer-copyright center">
+        <div class="container thin">
+          {{> version_Template}}
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <style type="text/css">
+    body,html {
+      overflow-x: hidden!important;
+      background-color: #f9f9f9;
+    }
+    .label-count {
+        position: absolute;
+        top: 2px;
+        right: 4px;
+        font-size: 10px;
+        line-height: 15px;
+        background-color: #000;
+        padding: 0 2px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+        border-radius: 3px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 30px;
+    }
+
+    ::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      background: rgba(0,0,255,0.3);
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+    ::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(0,0,255,0.3);
+    }
+
+  </style>
+    {{else}}
+      {{ gotoLogin }}
+    {{/ if}}
+  {{/ if}}
+</template>
+
+<template name="orionMaterializeOutAdminLayout_XP">
+  <div class="container orion-out-admin">
+    <div class="row">
+      <div class="col s12 m8 l6 offset-m2 offset-l3 push-m2 push-l3">
+        <div class="move">
+          <div class="card-panel elLogin">
+            {{> yield }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <style type="text/css">
+    html:before {
+      content: "";
+      position: fixed;
+      display: block;
+      /* background-image: url('/img/imagen_inicio.jpg'); */
+      width: 100%;
+      height: 100%;
+      -webkit-filter: blur(3px);
+      webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+
+    .elLogin {
+      -transition: box-shadow .25s;
+      padding: 20px;
+      margin: 0.5rem 0 1rem 0;
+      border-radius: 10px;
+      background-color: rgba(255, 255, 255, 1);
+      color: black;
+    }
+
+    .move {
+      position: absolute;
+      width: 100%;
+      top: 6.8rem;
+      left: -17.2rem;
+    }
+
+    .logoAutomatiso {
+      position: absolute;
+      right: 6%;
+      top: 5%;
+    }
+
+    .logoVangent {
+      position: absolute;
+      right: 3%;
+      top: 3%;
+    }
+  </style>
+</template>
+
+
+<template name="orionMaterializeContentContainer_XP">
+  <div class="materialize-content-container">
+    {{> yield }}
+  </div>
+</template>
+
+<template name="orionMaterializeButtonsContainer_XP">
+  <div class="materialize-buttons-container">
+    {{> yield }}
+  </div>
+</template>
+
+<template name="orionMaterializeHeaderContainer_XP">
+  {{> sAlert}}
+  {{# with getAdminLink 'myAccount' }}
+  <ul id="navbar-user-dropdown" class="dropdown-content">
+    <li>
+      <span class="grey-text text-darken-1">
+          {{ title }}
+        </span>
+    </li>
+
+    <li>
+      <a href="/admin/my-account" class="grey-text text-darken-4 flow-text">Mi Cuenta</a>
+    </li>
+
+    <!-- {{# each childs }} -->
+    {{#if IngresoConCorreo}}
+    <li> <a href="/admin/my-account/change-password" class="grey-text text-darken-4 flow-text">Cambiar Contraseña</a> </li>
+    {{/if}}
+
+    <li class="divider black"></li>
+    <li>
+      <a href="/" class="grey-text text-darken-4 logout">{{ i18n 'global.logout' }}</a>
+    </li>
+  </ul>
+  {{/ with }}
+
+  <!-- COLOR DEL HEADER -->
+  <div class="{{ options 'materialize.headerColor' colorHeader }} header-container z-depth-1">
+    <nav class="{{ options 'materialize.headerColor' colorHeader }}">
+      <div class="nav-wrapper">
+        <ul class="left blue light-blue-3">
+          <li>
+            <a href="#" data-activates="nav-mobile" class="mdl-tooltip mdl-tooltip--top  button-collapse" title="Menú">
+              <i class="material-icons">menu</i>
+            </a>
+          </li>
+        </ul>
+        <ul class="left">
+          <li>
+              <img src="{{logo}}" align="center" style="height:70px; width:auto" alt="Logo de la compañía">
+          </li>
+        </ul>
+        <ul class="right">
+
+          {{# if userHasPermission 'collections.notificaciones.index' }}
+          <li>
+            <a href="/admin/notificaciones" data-tool="Notificaciones"  class="tooltip animate right {{getClassNotificacionesNoLeidas}}" style="border-radius:10px 10px 10px 10px">
+              <div class="row" style="padding:0px;margin:0px;">
+                <div class="col"><i class="material-icons small  {{GetColorIconsHeader}}">notifications_active</i></div>
+                {{# if hayNotificacionesNoLeidas}}
+                <div class="col" style="vertical-align:top">{{getNotificacionesNoLeidas}}</div>
+                {{/ if}}
+              </div>
+            </a>
+          </li>
+          {{/ if}}
+
+          {{# if userHasPermission 'ajustes_template' }}
+          <li>
+            <a href="/admin/principal/ajustes" data-tool="Ajustes"  class="tooltip animate right" style="border-radius:10px 10px 10px 10px">
+              <i class="material-icons  {{GetColorIconsHeader}}">build</i>
+            </a>
+          </li>
+          {{/ if}}
+          <li>
+            <a class="dropdown-button user-links-activator tooltip animate left" href="#" data-tool="Mi Cuenta" data-activates="navbar-user-dropdown" style="border-radius:10px 10px 10px 10px">
+              <div class="row" style="padding:0px;margin:0px;">
+                <!-- <div class="col"  style="padding:0px;margin:0px;">
+                  <img class="circle responsive-img" style="height:auto; width:80px" src="{{ImgUser}}">
+                </div> -->
+                <div class="col {{GetColorIconsHeader}}" style="padding:0px;margin:0px;">
+                  <i class="material-icons">enhanced_encryption</i>
+                  <!-- {{# with getAdminLink 'myAccount' }} {{title}} {{/ with}} -->
+                </div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <!-- COLOR DE LA BARRA DE TITULO  -->
+  <div class="white-text {{colorTitle}} z-depth-1" style="padding : 5px">
+    <h6 class="flow-text">
+      {{> yield }}
+    </h6>
+  </div>
+  <script>
+    $(".button-collapse").sideNav();
+  </script>
+</template>
+
+<template name="orionMaterializeTabs_XP">
+  <div class="materialize-tabs-container {{ options 'materialize.headerColor' 'red' }}">
+    <ul class="tabs orion-materialize-tabs {{ options 'materialize.headerColor' 'red' }}">
+      {{# each items }}
+      <li class="tab col red">
+        <a class="{{ class }}" href="#">{{ title }}</a>
+      </li>
+      {{/ each }}
+    </ul>
+  </div>
+  <br>
+</template>
+
+<!-- SIDEBAR -->
+
+<template name="orionMaterializeSidebar_XP">
+  <header class="materialize-sidebar">
+
+<!-- COLOR DE LA ZONA DONDE VA EL ICONO DE AUTOMATISO -->
+    <ul id="nav-mobile" class="side-nav left fixed {{color}} no-padding" style="width:245px">
+    <li class="sidebar-brand" style="padding:5px 5px 0px 5px;">
+        <div class="tiny card {{color}} hoverable ">
+          <div class="card-content {{color}} center white-text" >
+          <img src="{{logo}}" align="center" style="vertical-align:middle;max-width: 100%;" height="100px" width="auto" alt="AutomatISO">
+          </div>
+        </div>
+      </li>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+      <p></p>
+
+      {{# each adminLinks }} {{> orionMaterializeSidebarLink_XP }} {{/ each }}
+    </ul>
+  </header>
+  <script>
+    $('.toggle').on('click', function() {
+      $('.sidebar').toggleClass("sidebar-collapsed");
+    });
+  </script>
+
+</template>
+
+<template name="orionMaterializeSidebarLink_XP">
+  {{# if childs }}
+  <li class="no-padding">
+
+    <!-- COLOR DE LA PARTE DE PRINCIPAL -->
+    <a class="mytitle collapsible-header  z-depth-1 {{color}} white-text" href="{{ RouterLayerPathFor routeName }}">
+      <i class="material-icons tiny left white-text">menu</i>
+      <a class="white-text bold" style="line-height:44px">Menú Principal</a>
+    </a>
+  </li>
+    <div class="z-depth-2 blue no-padding ">
+      <ul class="child-links hoverable left">
+        {{# each childs }}
+        {{> orionMaterializeSidebarLink_XP }}
+        {{/ each }}
+      </ul>
+    </div>
+
+  {{ else }}
+  <li class="no-padding {{ RouterLayerIsActiveRoutePartial activeRouteRegex }}" style="width:245px">
+    <!-- COLOR DE LA LISTA IZQUIERDA  colecciones-->
+      <a href="{{ RouterLayerPathFor routeName }}" class="mytitle waves-effect truncate z-depth-1 {{colorColecciones}} {{colorTextoColecciones}} text-flow">
+        <div class="flow-text" style="float:left; font-size:18px">{{title}} </div>
+        <div style="float:right">
+          <i class="Tiny material-icons">chevron_right</i>
+        </div>
+      </a>
+  </li>
+  {{/ if }}
+</template>
+
+<template name="orionMaterializeLogin_XP">
+  <div class="container" style="border-radius:10px 10px 10px 10px;">
+    {{ #if AccessWithFace}}
+        {{#if PersonFound}}
+            <div class="row center-align">
+                <!-- <img class="responsive-img" src="{{img}}" align="center" style="vertical-align:middle;max-width:40%" height="50%" width="auto" alt="Sigpack"><br><br> -->
+                <a class="waves-effect waves-light btn-large green" align="center" id="Ingresar">
+                    <i class="material-icons right">fingerprint</i>
+                    Ingresar{{clean}}</a><br><br>
+                <!-- <span class="blue-text">{{> version_Template}}</span> -->
+             </div>
+        {{else}}
+            <!-- <img src="/img/logo_mbes.png" align="center" style="vertical-align:middle;" height="60px" width="auto" alt="Sigpack"> -->
+              {{> atForm }}
+            <!-- <span class="blue-text">{{> version_Template}}</span> -->
+        {{/if}}
+    {{else}}
+      <!-- <img src="/img/logo_mbes.png" align="center" style="vertical-align:middle;" height="60px" width="auto" alt="Sigpack"> -->
+        {{> atForm }}
+      <!-- <span class="blue-text">{{> version_Template}}</span> -->
+    {{/if}}
+  </div>
+</template>
+
+<template name="version_Template">
+  Versión 1.3 - © {{anio}} Sigpack
+</template>
+
+<!--template name="loading">
+  Loading.....
+</template-->

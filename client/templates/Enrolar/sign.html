@@ -1,0 +1,15 @@
+<template name="sigpad">
+    <div id="signature-pad" class="m-signature-pad center-align">
+        <div class="m-signature-pad--body">
+            <canvas style="width:90%;height:400px;padding-left:10px"></canvas>
+        </div>
+        <div class="m-signature-pad--footer">
+            <a class="waves-effect waves-light btn-large orange darken-1 clear" data-action="clear" href="#">
+                <i class="material-icons right">cached</i> REINTENTAR</a>
+            <a class="waves-effect waves-light btn-large green darken-1 save " data-action="save" href="#">
+                <i class="material-icons right">save</i> GUARDAR</a>
+            <a class="waves-effect waves-light btn-large blue darken-1" id="continue_sign">
+                <i class="material-icons right">trending_flat</i> {{accion}}</a>
+        </div>
+    </div>
+</template>

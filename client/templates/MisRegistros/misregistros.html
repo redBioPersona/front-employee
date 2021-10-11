@@ -1,0 +1,62 @@
+<template name="orionMaterializeCollectionsIndex_MisRegistros">
+<style>
+a.noclick{ pointer-events: none; }
+.vacaciones{
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background: #90caf9;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+#texto-vacaciones{
+  font-weight: bold;
+  position: absolute;
+}
+.permisos{
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background: #0bec4a;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+#texto-permisos{
+  font-weight: bold;
+  position: absolute;
+}
+tfoot th{
+  text-align: center;
+}
+tbody td{
+  text-align: center;
+}
+</style>
+{{# Layout template=materializeHeader }}
+<i class="material-icons small">label_outline</i>Mis Registros
+{{> tabularQuickHelp  collectionName=collection.title help=collection.help width='70%' }}
+{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="floating-btn-onheader">
+  <a href="{{ getParentPath }}" class="btn-floating btn-large waves-effect waves-light blue right">
+    <i class="material-icons">reply</i>
+  </a>
+</div>
+<div class="row">
+  <div class="white lighten-5 black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+    <div class="card green lighten-5 center">
+      <div class="card-content white">
+        {{>tabularFilter}}
+        {{> tabular table=TabularTables.Reports selector=filtro class="table"}}
+        <div class="vacaciones"></div>
+        <span id="texto-vacaciones">Vacaciones</span>
+        <br>
+        <div class="permisos"></div>
+        <span id="texto-permisos">Permisos</span>
+      </div>
+    </div>
+  </div>
+</div>
+{{/ Layout }}
+</template>

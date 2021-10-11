@@ -1,0 +1,236 @@
+<template name="principal_dashboardTemplate">
+  {{# Layout template=materializeHeader }}
+  <i class="small material-icons hoverable">home</i> Principal
+  {{/ Layout }}
+  {{# Layout template=materializeContent }}
+  {{#if Template.subscriptionsReady}}
+
+
+  <div class="row">
+    <div class="{{color}} black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+      {{#if user}}
+          {{>FiltroPrincipal}}
+        {{else}}
+        <div class="card-action center black-text ">
+          <div class="col s10">
+            <h4 class="center flow-text">Datos del Último Mes</h4>
+          </div>
+          <div class="col s2">
+            <a id="SearchtabularFilter" class="btn-floating btn-medium waves-effect waves-light red">
+              <i class="material-icons">cached</i>
+            </a>
+          </div>
+
+
+       </div>
+       <div class="divider"></div><br>
+      {{/if}}
+
+      <div class="row">
+        <div class="col s12">
+          <div class="col s3">
+            <div class="info-box">
+              <div class="icon pink">
+                <i class="material-icons">airline_seat_individual_suite</i>
+              </div>
+              <div class="content">
+                <div class="text">Faltas</div>
+                <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">
+                  <!-- {{#if HasCount 'ReportsFaltas'}} -->
+                    {{principal_faltas}}
+                    <!-- {{else}}
+                    <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                  {{/if}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s3">
+            <div class="info-box  hover-expand-effect">
+              <div class="icon cyan">
+                <i class="material-icons">hourglass_empty</i>
+              </div>
+              <div class="content">
+                <div class="text">Retardos Asistencia</div>
+                <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">
+                  <!-- {{#if HasCount 'ReportsAll'}} -->
+                    {{principal_retardos_asistencia}}
+                    <!-- {{else}}
+                    <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                  {{/if}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s3">
+            <div class="info-box">
+              <div class="icon green">
+                <i class="material-icons">forum</i>
+              </div>
+              <div class="content">
+                <div class="text">Excepciones</div>
+                <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">
+                  <!-- {{#if HasCount 'ReportsExcepciones'}} -->
+                        {{principal_excepciones}}
+                    <!-- {{else}}
+                    <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                  {{/if}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s3">
+            <div class="info-box">
+              <div class="icon orange">
+                <i class="material-icons">directions_bike</i>
+              </div>
+              <div class="content">
+                <div class="text">Salidas Anticipadas</div>
+                <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20">
+                  <!-- {{#if HasCount 'ReportsAnticipadas'}} -->
+                        {{principal_anticipadas}}
+                    <!-- {{else}}
+                    <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                  {{/if}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{#if user}}
+        <div class="col s12">
+          <div class="col s3">
+            <div class="info-box">
+              <div class="icon grey darken-1">
+                <i class="material-icons">confirmation_number</i>
+              </div>
+              <div class="content">
+                <div class="text">Tickets</div>
+                <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20">
+                  <!-- {{#if HasCount 'ReportsTickets'}} -->
+                        {{principal_tickets}}
+                    <!-- {{else}}
+                    <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                  {{/if}} -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s3">
+            <div class="info-box  hover-expand-effect">
+              <div class="icon teal darken-1">
+                <i class="material-icons">restaurant_menu</i>
+              </div>
+              <div class="content">
+                <div class="text">Retardos Comidas</div>
+                <div class="number count-to" data-from="0" data-to="257" data-speed="1000" data-fresh-interval="20">
+
+
+                  <!-- {{#if HasCount 'ReportsMeal_times'}} -->
+                        {{principal_retardos_comidas}}
+                    <!-- {{else}}
+                    <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                  {{/if}} -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="info-box">
+              <div class="icon yellow darken-1">
+                <i class="material-icons">assignment_ind</i>
+              </div>
+              <div class="content">
+                <div class="text">Permisos</div>
+                <div class="number count-to" data-from="0" data-to="243" data-speed="1000" data-fresh-interval="20">
+
+                  <!-- {{#if HasCount 'ReportsPermisos'}} -->
+                        {{principal_permisos}}
+                    <!-- {{else}}
+                    <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                  {{/if}} -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="info-box">
+              <div class="icon red darken-1">
+                <i class="material-icons">airplanemode_active</i>
+              </div>
+              <div class="content">
+                <div class="text">Vacaciones</div>
+                <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20">
+
+
+                  <!-- {{#if HasCount 'ReportsVacations'}} -->
+                        {{principal_vacaciones}}
+                    <!-- {{else}}
+                    <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                  {{/if}} -->
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="info-box">
+              <div class="icon grey darken-1">
+                <i class="material-icons">business_center</i>
+              </div>
+              <div class="content">
+                <div class="text">Justificantes</div>
+                <div class="number count-to" data-from="0" data-to="1225" data-speed="1000" data-fresh-interval="20">
+                  <!-- {{#if HasCount 'ReportsJustificantes'}} -->
+                        {{principal_justificantes}}
+                    <!-- {{else}}
+                    <i class="fa fa-spinner fa-pulse fa-fw"></i>
+                  {{/if}} -->
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {{/if}}
+
+        <!-- {{#if IHadCompany}} -->
+        <div class="row">
+          <div class="col s7">
+            <div id="grafica_principal_sanciones" class="grafica_principal_sanciones" style="height:300px; width:100%;" ></div>
+          </div>
+          <div class="col s5">
+            <div id="grafica_principal_porcentajes" class="grafica_principal_porcentajes" style="height:300px; width:100%;" ></div>
+          </div>
+        </div>
+          <!-- {{/if}} -->
+
+      </div>
+    </div>
+  </div>
+  {{else}}
+  <p>loading...</p>
+    {{/if}}
+  {{/ Layout }}
+  <script>
+  $(document).ready(function() {
+    $('.collapsible').collapsible();
+  });
+  </script>
+
+  <div id="get_company" class="modal fade" style="border-radius: 10px 10px;">
+    <div align="right">
+      <a href="#!" class="modal-action modal-close btn-floating secondary-content waves-effect waves-green btn-flat" align="right">
+        <i class="medium material-icons">exit_to_app</i></a>
+      </div>
+      <div class="modal-header" style="color:#fff; padding:9px 15px; border-bottom:1px solid #eee; background-color: #5cb85c;align:center">
+        <h5>Compañia no Asociada</h5>
+      </div>
+      <div class="modal-content">
+        <div class="row" style="padding:10px">
+            Para mejorar la experiencia del Usuario solicite que el administrador le asigne su compañia
+        </div>
+      </div>
+    </div>
+</template>

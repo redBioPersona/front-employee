@@ -1,0 +1,263 @@
+<template name="principal_widgetTemplate">
+{{# if userHasPermission permission}}
+<a href="{{navWidget path parentPath}}">
+<div class="col s12 m3">
+<div class="card tiny hoverable {{baseColor}}">
+<div class="row">
+<div class="card-content {{textColor}}-text valign-wrapper" height="30px" style="text-align:center; padding-top:10px">
+<div class="col s12 m12 left-align valign" height="30px">
+<i class=" medium material-icons hoverable">{{icon}}</i>
+</div>
+</div></div>
+<div class="card-action white valign-wrapper z-depth-4"  style="text-align:center; padding-top:0px" heigth="20px">
+<h6 class="black-text valign" style="{ width: 100%; height: 30px;}">{{label}}</h6>
+</div>
+</div></div></a> {{/ if}} </template>
+<!--HTML administrar_notificaciones:-->
+<template name="administrar_notificaciones_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">add_alert</i> Administrar Notificaciones  {{> tabularQuickHelp  collectionName='Administrar Notificaciones' help='Icono de alertas en la generación de registros como: Reuniones, autorizaciones, capacitaciones, etc. ' }}{{/ Layout }} {{# Layout template=materializeContent }}
+
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+<template name="administrar_notificaciones_widgetTemplate"> {{# if userHasPermission permission}} <a href="{{navWidget path parentPath}}"><div class="col s12 m3"><div class="card tiny hoverable {{baseColor}}"><div class="row"><div class="card-content {{textColor}}-text valign-wrapper" height="30px" style="text-align:center; padding-top:10px"><div class="col s12 m12 left-align valign" height="30px"><i class=" medium material-icons hoverable">{{icon}}</i></div></div></div><div class="card-action white valign-wrapper z-depth-4"  style="text-align:center; padding-top:0px" heigth="20px"><h6 class="black-text valign" style="{ width: 100%; height: 30px;}">{{label}}</h6></div>
+</div></div></a> {{/ if}} </template>
+<!--HTML ajustes:-->
+<template name="ajustes_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">settings</i> Ajustes  {{> tabularQuickHelp  collectionName='Ajustes' help='Configuración inicial para la personalización del sistema.' }}{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+<template name="ajustes_widgetTemplate">
+        {{# if userHasPermission permission}}
+        <a href="{{navWidget path parentPath}}">
+            <div class="col s12 m3">
+                <div class="info-box hover-expand-effect {{ColorWidget}}" style="height:140px">
+                        <div class="icon {{ColorLeftWidget}}" style="vertical-align: middle">
+                        <i class="large material-icons">{{icon}}</i>
+                        </div>
+                        <div class="content {{ColorWidget}}">
+                        <div class="text flow-text {{ColorTextWidget}}" style="vertical-align: middle;font-size:20px;text-align: center;font-weight:bold;">{{label}}</div>
+                        </div>
+                    </div>
+            </div>
+        </a>
+    {{/ if}}
+</template>
+
+
+<!--HTML administrar_enrolamientos:-->
+<template name="administrar_enrolamientos_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">fingerprint</i> Administrar Enrolamientos  {{> tabularQuickHelp  collectionName='Generar / Consultar Enrolamientos' help='Permite enrolar un nuevo colaborador y verifica los datos de las personas ya enroladas.' }}{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="floating-btn-onheader"><a href="/admin/principal" class="btn-floating btn-large waves-effect waves-light {{IconColorBack}} right"><i class="material-icons">reply</i></a></div>
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+
+<template name="administrar_enrolamientos_widgetTemplate">
+    {{# if userHasPermission permission}}
+        <a href="{{navWidget path parentPath}}">
+            <div class="col s12 m3">
+                <div class="info-box hover-expand-effect {{ColorWidget}}" style="height:140px">
+                        <div class="icon {{ColorLeftWidget}}" style="vertical-align: middle">
+                        <i class="large material-icons">{{icon}}</i>
+                        </div>
+                        <div class="content {{ColorWidget}}">
+                        <div class="text flow-text {{ColorTextWidget}}" style="vertical-align: middle;font-size:20px;text-align: center;font-weight:bold;">{{label}}</div>
+                        </div>
+                    </div>
+            </div>
+        </a>
+    {{/ if}}
+</template>
+
+
+<!--HTML administrar_perfil_company:-->
+<template name="administrar_perfil_company_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">location_city</i> Perfiles de la Compañia  {{> tabularQuickHelp  collectionName='Datos de la Compañia' help='Muestra información de la Empresa.' }}{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="floating-btn-onheader"><a href="/admin/principal" class="btn-floating btn-large waves-effect waves-light {{IconColorBack}} right"><i class="material-icons">reply</i></a></div>
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+<template name="administrar_perfil_company_widgetTemplate">
+        {{# if userHasPermission permission}}
+        <a href="{{navWidget path parentPath}}">
+            <div class="col s12 m3">
+                <div class="info-box hover-expand-effect {{ColorWidget}}" style="height:140px">
+                        <div class="icon {{ColorLeftWidget}}" style="vertical-align: middle">
+                        <i class="large material-icons">{{icon}}</i>
+                        </div>
+                        <div class="content {{ColorWidget}}">
+                        <div class="text flow-text {{ColorTextWidget}}" style="vertical-align: middle;font-size:20px;text-align: center;font-weight:bold;">{{label}}</div>
+                        </div>
+                    </div>
+            </div>
+        </a>
+    {{/ if}}
+</template>
+
+<!--HTML Accesos:-->
+<template name="administrar_accesos_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">contact_mail</i> Administrar Accesos  {{> tabularQuickHelp  collectionName='Consulta los Registros de Asistencia' help='Consulte los distintos rubros de control de asistencia y alimentos.' }}{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="floating-btn-onheader"><a href="/admin/principal" class="btn-floating btn-large waves-effect waves-light {{IconColorBack}} right"><i class="material-icons">reply</i></a></div>
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+<template name="administrar_accesos_widgetTemplate">
+    {{# if userHasPermission permission}}
+        <a href="{{navWidget path parentPath}}">
+            <div class="col s12 m3">
+                <div class="info-box hover-expand-effect {{ColorWidget}}" style="height:140px">
+                        <div class="icon {{ColorLeftWidget}}" style="vertical-align: middle">
+                        <i class="large material-icons">{{icon}}</i>
+                        </div>
+                        <div class="content {{ColorWidget}}">
+                        <div class="text flow-text {{ColorTextWidget}}" style="vertical-align: middle;font-size:20px;text-align: center;font-weight:bold;">{{label}}</div>
+                        </div>
+                    </div>
+            </div>
+        </a>
+    {{/ if}}
+</template>
+
+<!--HTML Empleados:-->
+<template name="administrar_empleados_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">contacts</i> Administrar Colaboradores  {{> tabularQuickHelp  collectionName='Datos de los Colaboradores' help='Muestra información de los Colaboradores.' }}{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="floating-btn-onheader"><a href="/admin/principal" class="btn-floating btn-large waves-effect waves-light {{IconColorBack}} right"><i class="material-icons">reply</i></a></div>
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+<template name="administrar_empleados_widgetTemplate">
+        {{# if userHasPermission permission}}
+        <a href="{{navWidget path parentPath}}">
+            <div class="col s12 m3">
+                <div class="info-box hover-expand-effect {{ColorWidget}}" style="height:140px">
+                        <div class="icon {{ColorLeftWidget}}" style="vertical-align: middle">
+                        <i class="large material-icons">{{icon}}</i>
+                        </div>
+                        <div class="content {{ColorWidget}}">
+                        <div class="text flow-text {{ColorTextWidget}}" style="vertical-align: middle;font-size:20px;text-align: center;font-weight:bold;">{{label}}</div>
+                        </div>
+                    </div>
+            </div>
+        </a>
+    {{/ if}}
+</template>
+
+<!--HTML Politicas-->
+<template name="administrar_politicas_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">gavel</i>Políticas y Jornadas Laborales{{> tabularQuickHelp  collectionName='Políticas y Jornadas Laborales' help='Control de las Jornadas Laborales, y sanciones o reglas a considerarse ' }}{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="floating-btn-onheader"><a href="/admin/principal" class="btn-floating btn-large waves-effect waves-light {{IconColorBack}} right"><i class="material-icons">reply</i></a></div>
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+<template name="administrar_politicas_widgetTemplate">
+    {{# if userHasPermission permission}}
+        <a href="{{navWidget path parentPath}}">
+            <div class="col s12 m3">
+                <div class="info-box hover-expand-effect {{ColorWidget}}" style="height:140px">
+                        <div class="icon {{ColorLeftWidget}}" style="vertical-align: middle">
+                        <i class="large material-icons">{{icon}}</i>
+                        </div>
+                        <div class="content {{ColorWidget}}">
+                        <div class="text flow-text {{ColorTextWidget}}" style="vertical-align: middle;font-size:20px;text-align: center;font-weight:bold;">{{label}}</div>
+                        </div>
+                    </div>
+            </div>
+        </a>
+    {{/ if}}
+</template>
+
+
+<!--HTML Dispositivos:-->
+<template name="administrar_dispositivos_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">devices_other</i>Dispositivos{{> tabularQuickHelp  collectionName='Dispositivos' help='Estatus de los dispositivos Biométricos' }}{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="floating-btn-onheader"><a href="/admin/principal" class="btn-floating btn-large waves-effect waves-light {{IconColorBack}} right"><i class="material-icons">reply</i></a></div>
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+<template name="administrar_dispositivos_widgetTemplate">
+        {{# if userHasPermission permission}}
+        <a href="{{navWidget path parentPath}}">
+            <div class="col s12 m3">
+                <div class="info-box hover-expand-effect {{ColorWidget}}" style="height:140px">
+                        <div class="icon {{ColorLeftWidget}}" style="vertical-align: middle">
+                        <i class="large material-icons">{{icon}}</i>
+                        </div>
+                        <div class="content {{ColorWidget}}">
+                        <div class="text flow-text {{ColorTextWidget}}" style="vertical-align: middle;font-size:20px;text-align: center;font-weight:bold;">{{label}}</div>
+                        </div>
+                    </div>
+            </div>
+        </a>
+    {{/ if}}
+</template>
+
+
+<!--HTML Documentos:-->
+<template name="administrar_documentos_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">assignment</i>Documentos{{> tabularQuickHelp  collectionName='Documentos' help='Documentos por analizar' }}{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="floating-btn-onheader"><a href="/admin/principal" class="btn-floating btn-large waves-effect waves-light {{IconColorBack}} right"><i class="material-icons">reply</i></a></div>
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+<template name="administrar_documentos_widgetTemplate">
+        {{# if userHasPermission permission}}
+        <a href="{{navWidget path parentPath}}">
+            <div class="col s12 m3">
+                <div class="info-box hover-expand-effect {{ColorWidget}}" style="height:140px">
+                        <div class="icon {{ColorLeftWidget}}" style="vertical-align: middle">
+                        <i class="large material-icons">{{icon}}</i>
+                        </div>
+                        <div class="content {{ColorWidget}}">
+                        <div class="text flow-text {{ColorTextWidget}}" style="vertical-align: middle;font-size:20px;text-align: center;font-weight:bold;">{{label}}</div>
+                        </div>
+                    </div>
+            </div>
+        </a>
+    {{/ if}}
+</template>
+
+<!--HTML Estaciones:-->
+<template name="administrar_estaciones_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">phonelink</i>Estaciones{{> tabularQuickHelp  collectionName='Estaciones' help='Estaciones de Enrolamiento/ Verificación' }}{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="floating-btn-onheader"><a href="/admin/principal" class="btn-floating btn-large waves-effect waves-light {{IconColorBack}} right"><i class="material-icons">reply</i></a></div>
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+<template name="administrar_estaciones_widgetTemplate">
+        {{# if userHasPermission permission}}
+        <a href="{{navWidget path parentPath}}">
+            <div class="col s12 m3">
+                <div class="info-box hover-expand-effect {{ColorWidget}}" style="height:140px">
+                        <div class="icon {{ColorLeftWidget}}" style="vertical-align: middle">
+                        <i class="large material-icons">{{icon}}</i>
+                        </div>
+                        <div class="content {{ColorWidget}}">
+                        <div class="text flow-text {{ColorTextWidget}}" style="vertical-align: middle;font-size:20px;text-align: center;font-weight:bold;">{{label}}</div>
+                        </div>
+                    </div>
+            </div>
+        </a>
+    {{/ if}}
+</template>
+
+<!--HTML mis_registros:-->
+<template name="administrar_mis_registros_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">record_voice_over</i>Mis Registros{{> tabularQuickHelp  collectionName='Mis Registros de Asistencia' help='Consulte sus registros de Asistencia' }}{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="floating-btn-onheader"><a href="/admin/principal" class="btn-floating btn-large waves-effect waves-light {{IconColorBack}} right"><i class="material-icons">reply</i></a></div>
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+<template name="administrar_mis_registros_widgetTemplate"> {{# if userHasPermission permission}} <a href="{{navWidget path parentPath}}"><div class="col s12 m3"><div class="card tiny hoverable {{baseColor}}"><div class="row"><div class="card-content {{textColor}}-text valign-wrapper" height="30px" style="text-align:center; padding-top:10px"><div class="col s12 m12 left-align valign" height="30px"><i class=" medium material-icons hoverable">{{icon}}</i></div></div></div><div class="card-action white valign-wrapper z-depth-4"  style="text-align:center; padding-top:0px" heigth="20px"><h6 class="black-text valign" style="{ width: 100%; height: 30px;}">{{label}}</h6></div>
+</div></div></a> {{/ if}} </template>
+
+
+<!--HTML Estadisticos:-->
+<template name="administrar_estadisticos_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">bubble_chart</i>Estadísticos{{> tabularQuickHelp  collectionName='Graficas de Asistencia' help='Muestra de manera grafica los registros de Asistencia' }}{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="floating-btn-onheader"><a href="/admin/principal" class="btn-floating btn-large waves-effect waves-light {{IconColorBack}} right"><i class="material-icons">reply</i></a></div>
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+<template name="administrar_estadisticos_widgetTemplate">
+    {{# if userHasPermission permission}}
+    <a href="{{navWidget path parentPath}}">
+        <div class="col s12 m3">
+            <div class="info-box hover-expand-effect {{ColorWidget}}" style="height:140px">
+                    <div class="icon {{ColorLeftWidget}}" style="vertical-align: middle">
+                    <i class="large material-icons">{{icon}}</i>
+                    </div>
+                    <div class="content {{ColorWidget}}">
+                    <div class="text flow-text {{ColorTextWidget}}" style="vertical-align: middle;font-size:20px;text-align: center;font-weight:bold;">{{label}}</div>
+                    </div>
+                </div>
+        </div>
+    </a>
+{{/ if}}
+</template>
+
+<!--HTML Puentes:-->
+<template name="administrar_puentes_dashboardTemplate"> {{# Layout template=materializeHeader }}<i class="small material-icons hoverable">airline_seat_individual_suite</i>Días no laborales{{> tabularQuickHelp  collectionName='Días no Laborales' help='Administre los días laborables' }}{{/ Layout }} {{# Layout template=materializeContent }}
+<div class="floating-btn-onheader"><a href="/admin/principal" class="btn-floating btn-large waves-effect waves-light {{IconColorBack}} right"><i class="material-icons">reply</i></a></div>
+<div class="row">{{#each widgets}} {{> Template.dynamic template=template}} {{/each}} </div> {{/ Layout }} </template>
+<template name="administrar_puentes_widgetTemplate">
+        {{# if userHasPermission permission}}
+        <a href="{{navWidget path parentPath}}">
+            <div class="col s12 m3">
+                <div class="info-box hover-expand-effect {{ColorWidget}}" style="height:140px">
+                        <div class="icon {{ColorLeftWidget}}" style="vertical-align: middle">
+                        <i class="large material-icons">{{icon}}</i>
+                        </div>
+                        <div class="content {{ColorWidget}}">
+                        <div class="text flow-text {{ColorTextWidget}}" style="vertical-align: middle;font-size:20px;text-align: center;font-weight:bold;">{{label}}</div>
+                        </div>
+                    </div>
+            </div>
+        </a>
+    {{/ if}}
+</template>

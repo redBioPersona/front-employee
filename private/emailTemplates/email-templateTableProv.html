@@ -1,0 +1,97 @@
+        <table border="0" cellpadding="0" cellspacing="0" width="650">
+		<tbody>
+        	<tr>
+	        	<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 20px; vertical-align: top; color: #fff; font-weight: 500; text-align: center; border-radius: 3px 3px 0 0; background-color: #348eda; margin: 0; padding: 20px;">
+	              {{descEncuesta}}
+	            </td>
+        	</tr>
+          <!--<tr>
+          	<td align="left" valign="middle" width="86"><img alt="logotipo-empresa" height="62" src="{{urlServicio}}/img/logo_automatiso.png" style="display:block" width="80" class="CToWUd">
+          	</td>
+		  </tr>-->
+		  <tr>
+			<td width="584" style="border: 1px solid #414042">
+			<table align="center" border="0" cellpadding="0" cellspacing="0" width="605">
+				<tr>
+					<td align="left" style="font-size:13px;color:#000;font-family:Arial,Helvetica,sans-serif;font-weight:bold" width="605">
+                        <br/>
+						<strong>{{contMsgSaludo}} {{nombreCliente}}</strong>
+					</td>
+				</tr>
+				<tr>
+					<td align="left" style="font-size:13px;color:#000;font-family:Arial,Helvetica,sans-serif;font-weight:bold" width="605">
+						&nbsp;
+					</td>
+				</tr>
+                <tr>
+					<td align="left" style="font-size:13px;color:#000;font-family:Arial,Helvetica,sans-serif;text-align:justify">
+						{{contMsgMotivo}} {{contMsgPropositoE}} {{contMsgTiempoE}}
+					</td>
+                </tr>
+				<tr>
+					<td align="left" style="font-size:13px;color:#000;font-family:Arial,Helvetica,sans-serif;font-weight:bold" width="605">
+						&nbsp;
+					</td>
+				</tr>
+                <tr>
+					<td align="left" style="font-size:13px;color:#000;font-family:Arial,Helvetica,sans-serif;text-align:justify">
+						Para comenzar, haga clic en el v&iacute;nculo de la <a href="{{urlServicio}}?lin={{idEncuestaActual}}">evaluaci&oacute;n</a> o por favor copie la siguiente dirección URL y péguela en el campo de direcciones de su navegador de internet:
+					</td>
+                </tr>
+				<tr>
+					<td align="left" style="font-size:13px;color:#000;font-family:Arial,Helvetica,sans-serif;font-weight:bold" width="605">
+						&nbsp;
+					</td>
+				</tr>
+				<tr>
+					<td align="left" style="font-size:13px;color:#000;font-family:Arial,Helvetica,sans-serif;font-weight:bold" width="605">
+						{{urlServicio}}?lin={{idEncuestaActual}}
+					</td>
+				</tr>
+				<tr>
+					<td align="left" style="font-size:13px;color:#000;font-family:Arial,Helvetica,sans-serif;font-weight:bold" width="605">
+						&nbsp;
+					</td>
+				</tr>
+                <tr>
+					<td align="left" style="font-size:13px;color:#000;font-family:Arial,Helvetica,sans-serif;text-align:justify">
+						{{contMsgAgradecimiento}}
+					</td>
+                </tr>
+				<tr>
+					<td align="left" style="font-size:13px;color:#000;font-family:Arial,Helvetica,sans-serif;font-weight:bold" width="605">
+						&nbsp;
+					</td>
+				</tr>
+                <tr>
+					<td align="left" style="font-size:12px;color:#414042;font-family:Arial,Helvetica,sans-serif;text-align:center">
+						<center>{{contMsgContacto}}</center>
+					</td>
+                </tr>
+                <tr>
+					<td align="left" style="font-size:13px;color:#000;font-family:Arial,Helvetica,sans-serif;text-align:justify">
+						&nbsp;
+					</td>
+                </tr>
+                <tr>
+					<td align="left" style="font-size:12px;color:#414042;font-family:Arial,Helvetica,sans-serif;text-align:center">
+						<center>{{contMsgDireccionPostal}}</center>
+					</td>
+                </tr>
+				<tr>
+					<td align="left" style="font-size:13px;color:#000;font-family:Arial,Helvetica,sans-serif;font-weight:bold" width="605">
+						&nbsp;
+					</td>
+				</tr>
+				{{#if contMsgDesuscribir}}
+					<tr>
+						<td style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 10px; vertical-align: top; color: #fff; font-weight: 500; text-align: center; border-radius: 3px 3px 0 0; background-color: #348eda; margin: 0; padding: 10px;">
+							<a href="{{unsubscribe}}" style="font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; box-sizing: border-box; font-size: 10px; color: #999; text-decoration: underline; margin: 0;">Desuscribirse de estas notificaciones.</a>
+						</td>
+					</tr>
+				{{/if}}
+			</table>
+			</td>
+		  </tr>
+		  </tbody>
+          </table>

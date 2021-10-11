@@ -1,0 +1,46 @@
+<template name="orionMaterializeIndeOutReports">
+  {{# Layout template=materializeHeader }}
+  <i class="material-icons small">label_outline</i>
+  {{getName}}
+  {{> tabularQuickHelp  collectionName=collection.title help=collection.help width='70%' }}
+  {{/ Layout }}
+  {{# Layout template=materializeContent }}
+  <div class="floating-btn-onheader">
+    <a href="{{ getParentPath }}" id="back" class="btn-floating btn-large waves-effect waves-light {{GetColorIconBack}} right">
+      <i class="material-icons">reply</i>
+    </a>
+  </div>
+  <div class="row">
+    <div class="row">
+      <div class="{{ColorTabularIndex}}" style="padding:20px;border-radius: 10px 10px;">
+        {{>tabularFilter}}
+        {{> tabularExporter table=getLiv_totales_det_vwTabular selector=selector}}
+        {{> tabular table=getLiv_totales_det_vwTabular id="yad_report" selector=selector name="yad_report" class="table bordered"}}
+      </div>
+    </div>
+  </div>
+  {{/ Layout }}
+</template>
+
+<template name="orionMaterializeIndeAcargo">
+  {{# Layout template=materializeHeader }}
+  <i class="material-icons small">label_outline</i>
+  {{getNameX}}
+  {{> tabularQuickHelp  collectionName=collection.title help=collection.help width='70%' }}
+  {{/ Layout }}
+  {{# Layout template=materializeContent }}
+  <div class="floating-btn-onheader">
+    <a href="{{ getParentPath }}" id="back" class="btn-floating btn-large waves-effect waves-light {{GetColorIconBack}} right">
+      <i class="material-icons">reply</i>
+    </a>
+  </div>
+  <div class="row">
+    <div class="row">
+      <div class="{{ColorTabularIndex}}" style="padding:20px;border-radius: 10px 10px;">
+        {{> tabularExporter table=getLiv_totales_det_vwTabular selector=selector}}
+        {{> tabular table=getLiv_totales_det_vwTabular id="yad_report" selector=selector name="yad_report" class="table bordered"}}
+      </div>
+    </div>
+  </div>
+  {{/ Layout }}
+</template>

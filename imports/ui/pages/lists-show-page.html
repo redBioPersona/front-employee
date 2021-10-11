@@ -1,0 +1,50 @@
+<template name="Lists_show_page">
+	<div class="row">
+	    <div class="col l8 m10 s12 offset-l2 offset-m1 offset-s0 yellow lighten-5 black-text" style="padding:20px; border-radius: 10px 10px;">
+	    	{{#if encPorAplicar}}
+				{{#if Template.subscriptionsReady }}
+		    		<div class="Encuesta satisfaccions_wrapper">
+				    	<div class="row">
+				    		<h5 class="center-align">Encuesta de satisfacci&oacute;n del cliente</h5>
+				    	</div>
+				    	<div class="row">
+					    	<form name="form-encuesta" id="formEncuesta" novalidate="novalidate">
+			    			  <div class="row invalid" name="errores">
+							    <label id="errores" class="invalid red-text"></label>
+							  </div>
+				    			{{#each pregunta in preguntasEnc}}
+				    			  <div class="row">
+									  <div class="col">
+								    	<label for="{{pregunta._id}}">{{noPregunta}}. {{pregunta.psc_pregunta}}</label>
+								  	  </div>
+								  </div>
+								  <div class="row">
+									  <div class="col">
+									  	<div class="input-field">
+										    <select name={{noPreguntaTxt}} class="browser-default required" id={{pregunta._id}} required="" aria-required="true">
+										      <option value="" disabled selected>Elija una opci&oacute;n</option>
+										      <option value="1">No Satisfecho</option>
+										      <option value="2">Regularmente Satisfecho</option>
+										      <option value="3">Satisfecho</option>
+										      <option value="4">Muy Satisfecho</option>
+										      <option value="5">Totalmente Satisfecho</option>
+										    </select>
+									    </div>
+									</div>
+								  </div>
+				    			{{/each}}
+					    	</form>
+					    </div>
+					</div>
+					<button class="js-enviar btn waves-effect waves-light right" type="submit" name="action">Enviar
+					    <!-- <i class="material-icons right">send</i> -->
+					</button>
+				{{else}}
+					Cargando...
+				{{/if}}
+			{{else}}
+				{{>Enc_inactiva}}
+			{{/if}}
+		</div>
+	</div>
+</template>

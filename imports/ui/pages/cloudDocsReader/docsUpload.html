@@ -1,0 +1,56 @@
+<template name="cargaDocumentos">
+	<div class="row">
+		<form name="descargaNubeCargaBD">		
+			<div class="col l8 ofset-l2 m12 s12">
+				<div class="row">
+				    <div id="col l12 m12 s12 center">
+				    	<div>
+					    	Carga de documentos desde servicio en la nube
+					    </div>
+				    </div>
+				  </div>
+				<div class="row">
+				  	Indique el servicio que desea utilizar:
+				</div>				
+				<div class="col">
+					<div class=" class="hoverable" id="dropboxCloud">
+						<input type="radio" name="servicioNube" value="dropbox">Dropbox
+					</div>
+				</div>
+				<div class="col">
+					<div class=" class="hoverable" id="boxCloud">
+						<input type="radio" name="servicioNube" value="box">Box
+					</div>
+				</div>
+				<div class="col">
+					<div class=" class="hoverable" id="googleDriveCloud">
+				  		<input type="radio" name="servicioNube" value="googleDrive">Google Drive
+					</div>				  		
+				</div>
+				<div class="col">
+					<div class=" class="hoverable" id="oneDriveCloud">				
+				  		<input type="radio" name="servicioNube" value="oneDrive">One Drive
+					</div>				  		
+				</div>
+		  	</div>		
+			<div class="row">
+                <button class="js-enviarNvaEnc btn waves-effect waves-light right" type="submit" name="action">Conectar
+                    <i class="material-icons right">send</i>
+                </button>
+			</div>
+			<div>
+			</div>
+		</form>
+	</div>
+	<div class="row">		
+		<div class="col l6">
+			{{#if servicioConectado}}
+				{{#each archivo in archExcel}}
+					<div class="row">
+						archivo.nombre
+					</div>
+				{{/each}}
+			{{/if}}
+		</div>
+	</div>
+</template>

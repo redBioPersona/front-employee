@@ -1,0 +1,112 @@
+<template name="updateFingers">
+    <div class="row center-align">
+        <p class="flow-text center-align">Colaborador sin Huellas dactilares, selecione un dedo para enrolar</p>
+    </div>
+    <div class="row" style="padding-left:20px;padding-right:20px">
+
+        <div class="col s3">
+            <h6>Seleccione el dedo a enrolar</h6>
+            <div class="left-align">
+                <form id="FormGroupSignE" method="post" action="">
+                    <input name="groupSign" type="radio" id="left_pulgares" />
+                    <label for="left_pulgares">Pulgar Izquierdo</label>
+                    <input name="groupSign" type="radio" id="left__indices" />
+                    <label for="left__indices">Indice Izquierdo</label>
+                    <input name="groupSign" type="radio" id="left___medios" />
+                    <label for="left___medios">Medio Izquierdo</label>
+                    <input name="groupSign" type="radio" id="left_anulares" />
+                    <label for="left_anulares">Anular Izquierdo</label>
+                    <input name="groupSign" type="radio" id="left_meniques" />
+                    <label for="left_meniques">Meñique Izquierdo</label>
+                    <hr class="divider">
+                    <input name="groupSign" type="radio" id="right_pulgars" />
+                    <label for="right_pulgars">Pulgar Derecho</label>
+                    <input name="groupSign" type="radio" id="right_indices" />
+                    <label for="right_indices">Indice Derecho</label>
+                    <input name="groupSign" type="radio" id="right__medios" />
+                    <label for="right__medios">Medio Derecho</label>
+                    <input name="groupSign" type="radio" id="right__anular" />
+                    <label for="right__anular">Anular Derecho</label>
+                    <input name="groupSign" type="radio" id="right_menique" />
+                    <label for="right_menique">Meñique Derecho</label>
+                    <hr class="divider">
+                    <input name="groupSign" type="radio" id="no_fingers_na" />
+                    <label for="no_fingers_na">Dedos Amputados</label>
+                    <input name="groupSign" type="radio" id="no_fingers_xx" />
+                    <label for="no_fingers_xx">Dedos Vendados</label>
+                </form>
+            </div>
+        </div>
+
+        <div class="col s9">
+            <div class="row">
+                <div class="col s4">
+                    <img src="{{biometric_finger_binarized}}" align="center" style="height:auto; width:200px" alt="Huella Izquierda Binarizada">
+                </div>
+                <div class="col s4">
+                    <img src="{{biometric_finger_image}} " align="center" style="height:auto; width:200px" alt="Huella Izquierda">
+                </div>
+                <div class="col s4 teal darken-2">
+                    <form>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">graphic_eq</i>
+                                <label for="txt_process_left_enroll" class="white-text">Proceso: {{txt_process_biometric_enroll}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">multiline_chart</i>
+                                <label for="txt_quality_left_enroll" class="white-text">Calidad:{{txt_quality_biometric_enroll}}</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">more_horiz</i>
+                                <label for="txt_status_left_enroll" class="white-text">Estatus: {{txt_status_biometric_enroll}}</label>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s4">
+                    <a class="waves-effect waves-light btn-large green" align="center" id="biometric_capture_finger">
+                        <i class="material-icons right">fingerprint</i>
+                        CAPTURAR</a>
+                </div>
+
+                <div class="col s4">
+                    <form action="#">
+                        <div style="width:100%">
+                            <label for="finger_to_upload" class="waves-effect waves-light btn-large blue darken-1">Cargar Huella
+                                <i class="material-icons">attach_file</i>
+                            </label>
+                            <input type="file" id="finger_to_upload" accept="image/*" style="visibility:hidden;">
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col s4">
+                    <a class="waves-effect waves-light btn-large orange darken-1" align="center" id="biometric_cancel_finger">
+                        <i class="material-icons right">cancel</i>
+                        CANCELAR</a>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col s4 offset-s8">
+                    <a class="waves-effect waves-light btn-large red darken-1" align="center" id="finish_biometric_capture_finger">
+                        <i class="material-icons right">exit_to_app</i>
+                        Terminar Proceso</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

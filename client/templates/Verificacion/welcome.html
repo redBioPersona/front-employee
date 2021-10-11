@@ -1,0 +1,354 @@
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta name="author" content="Vangent México">
+  <meta name="description" content="Sistema de enrolamiento y Verificación biometricos">
+  <meta property="og:description" content="Sistema de enrolamiento y Verificación biometricos">
+  <meta property="og:title" content="MBES">
+  <link rel="shortcut icon" href="/img/icono.png">
+  <title>Sigpack</title>
+</head>
+
+<template name="welcome">
+  <link href="/iconfont/material-icons.css" rel="stylesheet">
+  <style type="text/css">
+  #stats{
+    visibility:hidden
+  }
+  .modal { width: 65% !important ;height: 95% !important ;}
+  body {
+    overflow-x: hidden!important;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column
+  }
+  main {
+    flex: 1 0 auto;
+  }
+  .gm-style .gm-style-cc span,
+  .gm-style .gm-style-cc a,
+  .gm-style .gm-style-mtc div {
+    font-size: 10px
+  }
+  </style>
+  <style type="text/css">
+  @media print {
+    .gm-style .gmnoprint,
+    .gmnoprint {
+      display: none
+    }
+  }
+
+  @media screen {
+    .gm-style .gmnoscreen,
+    .gmnoscreen {
+      display: none
+    }
+  }
+  </style>
+  <style type="text/css">
+  .gm-style-pbc {
+    transition: opacity ease-in-out;
+    background-color: rgba(0, 0, 0, 0.45);
+    text-align: center
+  }
+
+  .gm-style-pbt {
+    font-size: 22px;
+    color: white;
+    font-family: Roboto, Arial, sans-serif;
+    position: relative;
+    margin: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%)
+  }
+  </style>
+
+
+  <style type="text/css">
+  .jqstooltip {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    visibility: hidden;
+    background: rgb(0, 0, 0) transparent;
+    background-color: rgba(0, 0, 0, 0.6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+    color: white;
+    font: 10px arial, san serif;
+    text-align: left;
+    white-space: nowrap;
+    padding: 5px;
+    border: 1px solid white;
+    z-index: 10000;
+  }
+
+  .jqsfield {
+    color: white;
+    font: 10px arial, san serif;
+    text-align: left;
+  }
+  </style>
+
+  <style type="text/css">
+  .gm-style {
+    font: 400 11px Roboto, Arial, sans-serif;
+    text-decoration: none;
+  }
+  .gm-style img {
+    max-width: none;
+  }
+  </style>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+  <header id="header" class="page-topbar">
+    <div class="navbar-fixed">
+      <nav class="navbar-color">
+        <div class="nav-wrapper">
+          <div class="left hide-on-med-and-down" style="padding-left:20px">
+            <img src="/img/logo_mbes.png" style="width: 100px;height: 60px;" alt="MBES">
+          </div>
+          <div class="right" style="padding-right:60px">
+            <div class="row" style="display:inline-flex">
+              <a href="#" id="salir" style="padding-right:20px">
+                <i class="medium material-icons">account_circle</i>
+              </a>
+              <a href="#" id="maximize">
+                <i class="medium material-icons">open_with</i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main style="display:flex;min-height: 10vh;flex-direction: column">
+    <div id="main">
+      {{> sAlert}}
+      <div class="wrapper">
+        <aside id="left-sidebar-nav">
+          <ul id="slide-out" class="side-nav fixed leftside-navigation ps-container ps-active-y" style="width: 240px;">
+
+            {{#if ShowFingerService}}
+            <li class="bold center-align">
+              <i id="icon_finger" class="center-align medium material-icons {{getBiometricStatus}}">fingerprint</i>
+            </li>
+            {{/if}}
+
+            {{#if ShowFaceService}}
+            <li class="bold center-align">
+              <i id="icon_finger" class="center-align medium material-icons {{getFaceStatus}}">camera_enhance</i>
+            </li>
+            {{/if}}
+
+            {{#if ShowPrintService}}
+            <li class="bold center-align">
+              <i id="icon_finger" class="center-align medium material-icons {{getPrintStatus}}">local_printshop</i>
+            </li>
+            {{/if}}
+
+            {{#if ShowDeviceFingerConnect}}
+            <li class="bold center-align">
+              <i id="icon_finger" class="center-align medium material-icons {{getBiometricDevices}}">device_hub</i>
+            </li>
+            {{/if}}
+
+            {{#if ShowSyncService}}
+            <li class="bold center-align">
+              <i id="icon_finger" class="center-align medium material-icons {{getBiometricWifi}}">wifi</i>
+            </li>
+            {{/if}}
+
+          </ul>
+        </aside>
+        <section id="content">
+          <div class="container">
+            <div id="chart-dashboard">
+              <div class="row">
+                <div class="col s8 m8 l8 xl8 Tiempo">
+                  <div class="card z-depth-4" style="border-radius: 15px 15px;">
+                    <div class="card-move-up waves-effect waves-block waves-light">
+                      <div class="move-up cyan darken-1" align="center">
+                        <h2 class="white-text" id="reloj_hora"></h2>
+                      </div>
+                    </div>
+                    <div class="card-content" align="center">
+                      <h5 class="blue-text {{alertas}}" id="reloj_fecha"></h5>
+                    </div>
+                  </div>
+
+                  <div class="row Tiempo">
+                    <div class="col s12 m6 l6 xl6">
+                      <div class="card blue-grey darken-1 z-depth-3" style="border-radius: 10px 10px;">
+                        <div class="card-content white-text" align="center">
+                          {{#if isServer}}
+                          {{>webcam}}
+                          {{else}}
+                          {{>Tracking}} <!-- cameraX | Tracking -->
+                          {{/if}}
+                          <div class="row">
+                            {{#if isprocesando_verificacion}}
+                            <div class="col s4">
+                              <img src="/gifs/loading.gif" height="auto" width="50px" alt="">
+                            </div>
+                            <div class="col s8">
+                              <p class="flow-text" id="procesando_verificacions"> {{procesando_verificacion}} </p>
+                            </div>
+                            {{else}}
+                            <div class="col s12">
+                              <p class="flow-text" id="procesando_verificacions"> {{procesando_verificacion}} </p>
+                            </div>
+                            {{/if}}
+
+                          </div>
+
+                          {{>new_device}}
+                          {{>ask_meal}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col m6 l6 xl6 logoMBES">
+                      <div class="card blue-green darken-1 z-depth-4" style="border-radius: 10px 10px;">
+                        <div class="card-content white-text center-align">
+                          <img class="center-align" name="" src="/img/logo_mbes.png" style="width:100%;height:auto;max-width: 100%;" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col s4 m4 l4 xl4">
+                  <div class="card z-depth-2"  style="border-radius: 10px 10px;">
+                    <div class="card-move-up cyan darken-1 waves-effect waves-block waves-light" align="center">
+                      <div class="move-up">
+                        <img class="center-align myface" src="{{yourface}}" width="100%" height="auto" alt="">
+                      </div>
+                    </div>
+                    <div class="card-content  cyan darken-3 BarraDerecha">
+                      {{#if someone}}
+                      <div class="line-chart-wrapper">
+                        <p class="margin white-text center-align">Datos del Colaborador</p>
+                        <br>
+                        <div class="row white-text">
+                          <form class="col s12 white-text">
+
+                            <div class="row">
+                              <div class=" input-field col s12">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="emp_name" type="text" value="{{emp_name}}" readonly class="validate white-text">
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="white-text input-field col s12">
+                                <i class="material-icons prefix">email</i>
+                                <input id="emp_mail" type="text" value="{{emp_correo}}" readonly class="validate white-text">
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="white-text input-field col s12">
+                                <i class="material-icons prefix">business</i>
+                                <input id="emp_emp" type="text" value="{{emp_empresa}}" readonly class="validate white-text">
+                              </div>
+                            </div>
+
+                            <div class="row">
+                              <div class="white-text input-field col s12">
+                                <i class="material-icons prefix">work</i>
+                                <input id="emp_pus" type="text" value="{{emp_puesto}}" readonly class="validate white-text">
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                      {{else}}
+                      <div class="line-chart-wrapper center-align">
+                        <div class="row white-text center-align">
+                          <form class="col s12 white-text center-align">
+                            <!-- {{#if isprocesando_verificacion}}
+                            <div class="progress" style="background-color: skyblue">
+                            <div class="indeterminate"></div>
+                          </div>
+                          {{/if}} -->
+                          <br>
+                          <div class="row center-align">
+                            <div class="white-text input-field col s12 center-align">
+                              <p class="validate white-text center-align msjs">MULTIBIOMETRIC</p>
+                            </div>
+                          </div>
+                          <div class="divider"></div>
+
+                          <br><br>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <p class="validate white-text center-align msjs">ENROLLMENT</p>
+                            </div>
+                          </div>
+                          <div class="divider"></div>
+
+                          <br><br>
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <p class="validate white-text center-align msjs">SYSTEM</p>
+                            </div>
+                          </div>
+                          <div class="divider"></div>
+
+                        </form>
+                      </div>
+                    </div>
+                    {{/if}}
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+
+<footer class="page-footer cyan darken-2">
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <div class="card-content white-text">
+          <p class="otrosmsjs">FAVOR DE REGISTRAR SU ENTRADA, COMIDA (IDA Y REGRESO) Y SALIDA</p>
+          {{#if isServer}}
+          {{else}}
+            <p class="otrosmsjs">COLOQUE SU DEDO ÍNDICE EN EL SENSOR Y ESPERE EL MENSAJE DE PROCESANDO</p>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-copyright">
+    <div class="container">
+      <span class="white-text otrosmsjs">{{> version_Template}}</span>
+    </div>
+  </div>
+</footer>
+
+<div id="iniciar_sesion" class="modal fade" style="border-radius: 10px 10px;">
+<div class="modal-content">
+  <div class="row">
+    <div class="col s12 yellow lighten-5 black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+      {{> orionMaterializeLogin_XP}}
+    </div>
+  </div>
+</div>
+</div>
+
+</template>

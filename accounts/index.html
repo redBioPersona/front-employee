@@ -1,0 +1,51 @@
+<template name="orionMaterializeAccountIndex_XP">
+  {{# Layout template=materializeHeader }}
+  <i class="material-icons small">person</i> {{ i18n 'accounts.myAccount.title' }} {{/ Layout }} {{# Layout template=materializeContent }}
+  <div class="floating-btn-onheader">
+    <a href="/admin/principal" class="btn-floating btn-large waves-effect waves-light blue right">
+      <i class="material-icons">reply</i>
+    </a>
+  </div>
+
+
+  <div class="yellow lighten-5 black-text z-depth-2" style="border-radius:10px 10px 10px 10px;padding:10px 10px 10px 10px;">
+    <div class="row">
+      {{# if currentUser.profile.picture }}
+      <div class="col m2 s12">
+        <p>
+          <img class="profile-picture" src="{{ currentUser.profile.picture.url }}">
+        </p>
+      </div>
+      {{/ if }}
+      <div class="col m10 s12">
+        <div class="row" style="padding-left:20px">
+        <span class="flow-text"> Mi Perfil</span>
+        <br>
+        <br>
+        <div class="row">
+          <div class="col s5">
+            <img src="{{ getImageProfile currentUser.profile.idEmployee }}" width="100%" height="auto">
+            {{#if IsUpdateFace}} <a id="UpdateFace" class="waves-effect waves-light btn center-align" href="#">Actualizar/Agregar Imagen</a> {{/if}}
+          </div>
+          <div class="col s7">
+            <p>Nombre de usuario: <b>{{ currentUser.profile.name }}</b></p>
+            <!-- <p>Cuenta de  acceso: <b>{{# each currentUser.emails }} {{ address }} {{/ each }}</b> </p>-->
+            <p>Compañia: <b>{{ getCompany currentUser.profile.idcompany }}</b></p>
+            <p>Colaborador asociado: <b>{{ getEmployee currentUser.profile.idEmployee }}</b></p>
+            <p>Roles: <b> {{# each currentUser.roles }}
+              <span class="chip small green white-text">{{ this }}</span> {{/ each }}
+            </b>
+            </p>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/ Layout }} {{# Layout template=materializeButtons }}
+  <a class="logout waves-effect waves-light btn" href="#">{{ i18n 'global.logout' }}</a>
+  <!-- <a href="{{ RouterLayerPathFor 'myAccount.profile' }}" class="waves-effect waves-light btn">{{ i18n 'accounts.updateProfile.title' }}</a> -->
+  <!-- <a href="{{ RouterLayerPathFor 'myAccount.password' }}" class="waves-effect waves-light btn">{{ i18n 'accounts.changePassword.title' }}</a>-->
+   {{/ Layout }}
+   {{>updateFace}}
+</template>

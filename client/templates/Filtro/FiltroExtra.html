@@ -1,0 +1,20 @@
+<template name="FiltroExtra">
+  <div class="row" style="padding:10px;">
+    <div class="col s5" style="padding:10px;">
+      Fecha Inicial
+      <input type="text" name="fechaInicio" id="fechaInicio" class="form-control floating-label"
+        placeholder="Fecha Inicial">
+      </div>
+
+      <div class="col s5" style="padding-left:10px;padding-top:10px;padding-bottom:10px">
+        Fecha Final
+        <input type="text" name="fechaFin" id="fechaFin" class="form-control floating-label" placeholder="Fecha Final">
+        </div>
+
+            <div class="col s2">
+              <a id="SearchtabularFilter" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></a>
+          </div>
+
+      </div>
+      <h6 class="center flow-text">Última búsqueda: {{ultimaActualizacion}}</h6>
+    </template>

@@ -1,0 +1,59 @@
+<template name="afQuickHelpMR">
+     {{#if isHiddenInput}}
+     {{else}}
+     <a class="waves-effect waves-light yellow lighten-5 blue-text show-help" style="text-align:center;width:15px"><i class="tiny material-icons">info</i>
+     </a>
+
+      {{#if showMessage}}
+         <div class="yellow lighten-4 black-text z-depth-3" style="padding:5px;5px;5px;5px;position:absolute;align:left;z-index:200;border-radius:10px; width: 300px;overflow:visible;">
+                <h5><b>{{displayName}}</b></h5>
+                <br>
+               <b>Descripción:</b> <h6>{{{displayHelp}}}</h6>
+               <br>
+                  <b>Ejemplo:</b>  <h6>{{{displayExample}}}</h6>
+             </div>
+     {{/if}}
+    {{/if}}
+</template>
+
+
+
+<template name="afQuickEditMR">
+
+ {{#if isHiddenInput}}
+ {{else}}
+ {{#if isForeign}}
+
+   {{/if}}
+{{/if}}
+   {{#if showMessage}}
+
+   {{#if isListing}}
+   <div class="row" style="position:relative;margin-left:-1700%;margin-top:-20%;width:1800%;height:90%;z-index:1000">
+      <div class="col s12 m12 l12" style="padding:5px;5px;5px;5px;align:left;height:500px;z-index:100;border-radius:10px;">
+        <div class="card yellow lighten-5 black-text z-depth-3" style="border-radius:10px;">
+        {{>orionMaterializeCollectionsIndex_XPM fieldName=name collection=getCurrentCollectionToPlay}}
+      </div>
+    </div>
+    </div>
+ {{/if}}
+     {{#if isCreating}}
+     <div class="row" style="position:relative;margin-left:-1700%;margin-top:-20%;width:1800%;height:90%;z-index:1000">
+        <div class="col s12 m12 l12" style="padding:5px;5px;5px;5px;align:left;height:500px;z-index:100;border-radius:10px;">
+          <div class="card yellow lighten-5 black-text z-depth-3" style="border-radius:10px;">
+          {{>orionMaterializeCollectionsCreate_XPM fieldName=name collection=getCurrentCollectionToPlay}}
+        </div>
+      </div>
+      </div>
+       {{/if}}
+       {{#if isUpdating}}
+       <div class="row" style="position:relative;margin-left:-1700%;margin-top:-20%;width:1800%;height:90%;z-index:1000">
+          <div class="col s12 m12 l12" style="padding:5px;5px;5px;5px;align:left;height:500px;z-index:100;border-radius:10px;">
+            <div class="card yellow lighten-5 black-text z-depth-3" style="border-radius:10px;">
+            {{>orionMaterializeCollectionsUpdate_XPM fieldName=name collection=getCurrentCollectionToPlay item=getRecordToUpdate}}
+          </div>
+        </div>
+        </div>
+    {{/if}}
+  {{/if}}
+</template>

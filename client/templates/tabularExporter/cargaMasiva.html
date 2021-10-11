@@ -1,0 +1,152 @@
+<template name="orionMaterializeCollectionsCargaMasiva">
+    <style>
+        .errorx{
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            background: #cc1735;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+        #texto-errorx{
+            font-weight: bold;
+            position: absolute;
+        }
+        .warnx{
+            width: 20px;
+            height: 20px;
+            display: inline-block;
+            background: #f5f109;
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+        #texto-warnx{
+            font-weight: bold;
+            position: absolute;
+        }
+    </style>
+    {{# Layout template=materializeHeader }}
+    <i class="material-icons small">label_outline</i>
+    Importar Información
+    {{> tabularQuickHelp  collectionName=collection.title help=collection.help width='70%' }}
+    {{/ Layout }}
+    {{# Layout template=materializeContent }}
+    <div class="floating-btn-onheader">
+        <a href="{{ getParentPath }}"
+            class="btn-floating btn-large waves-effect waves-light {{GetColorIconBack}} right">
+            <i class="material-icons">reply</i>
+        </a>
+    </div>
+
+    {{# if collection.canIndex }}
+    <div class="row">
+        {{> sAlert}}
+        <div class="row">
+            <div class="{{ColorTabularIndex}}" style="padding:20px;border-radius: 10px 10px;">
+                <div class="row" style="padding:20px">
+                    <div class="center-align">
+                        <table class="responsive-table striped bordered">
+                            <thead>
+                                <tr>
+                                    <th>Estructura necesaria</th>
+                                    <th>Datos de ejemplo</th>
+                                    <th>Notas</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a class="waves-effect waves-light btn-small center-align" href="/docs/Formatos.zip" target="_blank" id="a1"> Formatos </a>
+                                    </td>
+                                    <td>
+                                        <a class="waves-effect waves-light btn-small center-align" href="/docs/Ejemplos.zip" target="_blank" id="a2"> Ejemplos </a>
+                                    </td>
+                                    <td>
+                                            <a class="waves-effect waves-light btn-small center-align" href="/docs/Notas.zip" target="_blank" id="a3"> Notas </a>
+                                        </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <table class="responsive-table striped bordered">
+                        <thead>
+                            <tr>
+                                <th>Módulo</th>
+                                <th>Compañia</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select class="browser-default" id="moduloSelect">
+                                        <option value="" disabled selected="selected">Seleccione una opción</option>                                        
+                                        <option value="Areas">Áreas</option>
+                                        <option value="Horarios">Asignación de horarios</option>
+                                        <option value="Colaboradores">Colaboradores</option>
+                                        <option value="Departamentos">Departamentos</option>
+                                        <option value="Direcciones">Direcciones Corporativas</option>
+                                        <option value="Documentos">Documentos</option>                                        
+                                        <option value="Incidencias">Incidencias</option>
+                                        <option value="Jefes">Jefes</option>
+                                        <option value="Localidades">Localidades</option>
+                                        <option value="Outsourcing">Outsourcing</option>
+                                        <option value="Puestos">Puestos</option>
+                                        <option value="Proyectos">Proyectos</option>
+                                        <option value="Alimentos">Reglas para los alimentos</option>
+                                        <option value="Retardos">Reglas para los retardos</option>
+                                        <option value="Restaurantes">Restaurantes</option>
+                                        <option value="Sanciones">Sanciones</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="browser-default" id="companySelect">
+                                        <option value="" disabled selected="selected">Seleccione una opción</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="center-align">
+                            <form action="#">
+                                    <div class="file-field input-field">
+                                        <div class="row">
+                                            <div class="btn">
+                                                <i class="material-icons">attach_file</i>
+                                                <input type="file" id="file_to_upload" accept=".xlsx">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" id="Tfile_to_upload" type="text" placeholder="Selecciona el documento de excel, con los datos a importar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row left-align">
+                                        <div class="input-field col s12">
+                                          <input type="checkbox" class="checkbox validate" id="allowUP" name="allowUP">
+                                          <label for="allowUP">Actualizar si el registro ya existe</label>
+                                        </div>
+                                      </div>
+                                </form>
+                    </div>
+
+                    <div class="center-align">
+                        <a class="waves-effect waves-light btn-large center-align" id="Procesar"><i
+                                class="material-icons right">backup</i>Iniciar proceso de Importación</a>
+                    </div>
+                </div>
+                {{> tabularExporter table=collection.tabularTable selector=selector}}
+                {{> tabular table=collection.tabularTable selector=selector class="table display compact bordered" id="dataTables" }}
+                <div class="errorx"></div>
+                <span id="texto-errorx">Errores</span>
+                <br>
+                <div class="warnx"></div>
+                <span id="texto-warnx">Advertencias</span>
+            </div>
+        </div>
+    </div>
+    {{/ if }}
+    {{/ Layout }}
+</template>

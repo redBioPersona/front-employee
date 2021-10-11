@@ -1,0 +1,15 @@
+<template name="App_body">
+  <div class="blue lighten-3">
+    <div class="admin-content">
+      {{>encabezado}}
+      <div class="row j-main">
+        <div class="materialize-content-container">
+                {{>yield}}
+        </div>
+      </div>
+    </div>
+    <div>
+      {{>footer}}
+    </div>
+  </div>
+</template>

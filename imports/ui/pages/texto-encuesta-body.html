@@ -1,0 +1,88 @@
+<template name="Encuesta_body">
+      <div class="row">
+        <div class="col s6 offset-s3">
+          <ul class="tabs">
+            <li class='tab col s6'><a class="active" href="/pub/crear-encuesta">Encuesta clientes</a></li>
+            <li class='tab col s6'><a href="/pub/crear-encuesta-prov">Evaluaci&oacute;n proveedores</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row j-main">
+        <div class="col s6 offset-s3 card-panel">
+            <form class="formValidate" name="form-invitacion-encuesta" id="formInvitacionEnc" novalidate="novalidate">
+              <div class="row center-align">
+                <h5>Diseño de invitaci&oacute;n para encuesta de satisfacci&oacute;n</h5>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">add</i>
+                  <textarea class="materialize-textarea" id="msgSaludo" name="msgSaludo" placeholder="Estimado Sr. Smith">{{contMsgSaludo}}
+                  </textarea>
+                  <label for="msgSaludo">Saludo simple</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">mode_edit</i>
+                  <textarea class="materialize-textarea validate" id="msg_MotivoI" name="msgMotivoI" placeholder="Est&aacute; recibiendo esta invitaci&oacute;n, en relaci&oacute;n con su compra reciente...">{{contMsgMotivo}}
+                  </textarea>
+                  <label for="msg_MotivoI">Motivo de la invitaci&oacute;n</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">mode_edit</i>
+                  <textarea class="materialize-textarea validate" id="msgPropositoE" name="msgPropositoE" placehsolder="Utilizamos su retroalimentaci&oacute;n para mejorar constantemente y proveerle con el mejor servicio posible.">{{contMsgPropositoE}}
+                  </textarea>
+                  <label for="msgPropositoE">Prop&oacute;sito de la encuesta</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">mode_edit</i>
+                  <textarea class="materialize-textarea validate" id="msgTiempoE" name="tiempoE" placeholder="T&iacute;picamente, esta encuesta le tomar&aacute; 5 minutos.">{{contMsgTiempoE}}
+                  </textarea>
+                  <label for="msgTiempoE">Tiempo estimado que tomar&aacute; responder la encuesta</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">mode_edit</i>
+                  <textarea class="materialize-textarea validate" id="detallesContacto" name="contacto" placeholder="Si tiene alguna duda o comentario, por favor cont&aacute;ctenos a nuestros tel&eacute;fonos 55 5555 5555 o en contacto@compañía.com">{{contMsgContacto}}
+                  </textarea>
+                  <label for="detallesContacto">Detalles de contacto</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">mode_edit</i>
+                  <textarea class="materialize-textarea validate" id="Agradecimiento" name="agradecimiento" placeholder="Gracias por proporcionarnos su retroalimentaci&oacute;n. Apreciamos el tiempo que nos ha dedicado y lo utilizaremos activamente para ofrecerle un mejor servicio.">{{contMsgAgradecimiento}}
+                  </textarea>
+                  <label for="Agradecimiento">Agradecimiento</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">mode_edit</i>
+                  <textarea class="materialize-textarea validate" id="direccion_postal" name="direccionPostal" placeholder="Calle Zacatecas No. 36 interior 108, Col. Roma Norte, Delegaci&oacute;n Cuauht&eacute;moc, C.P. 06700. M&eacute;xico, Distrito Federal. Tel&eacute;fono: 51402500 Correo Electr&oacute;nico: info@vangentmexico.com.mx">{{contMsgDireccionPostal}}
+                  </textarea>
+                  <label for="direccion_postal">Direcci&oacute;n postal</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input type="checkbox" class="checkbox validate" id="desuscripcion" name="desuscribir" checked="{{contMsgDesuscribir}}">
+                  <label for="desuscripcion">Enviar v&iacute;nculo para desuscripci&oacute;n de lista de env&iacute;os</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="js-enviarNvaEnc btn waves-effect waves-light right" type="submit" name="action">Guardar
+                      <i class="material-icons right">send</i>
+                  </button>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+</template>

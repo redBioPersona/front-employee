@@ -1,0 +1,1 @@
+import './recurso-no-encontrado.html';

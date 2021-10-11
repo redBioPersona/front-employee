@@ -1,0 +1,218 @@
+<template name="orionMaterializeCollectionsCreate_XP">
+ {{# if collection.canShowCreate }}
+   {{# Layout template=materializeHeader }}
+     <i class="material-icons small">playlist_add</i>Crear {{ collection.singularName }}
+   {{/ Layout }}
+   {{# Layout template=materializeContent }}
+   <div class="floating-btn-onheader">
+        <a href="{{ collection.indexPath }}" class="btn-floating btn-large waves-effect waves-light GetColorIconBack right">
+          <i class="material-icons">reply</i>
+        </a>
+      </div>
+      {{getValueToUse}}
+      <div class="{{ColorTabularIndex}}" style="padding:20px;border-radius: 10px 10px;">
+        {{> sAlert }}
+        {{#autoForm  collection=collection id="orionMaterializeCollectionsCreateForm_XP" type="insert" buttonContent=false  omitFields=collection.getHiddenFields  }}
+        {{#each afFieldNames}}
+        {{#if showField collection.pluralName this.name }}
+
+        <div class= "row">
+          <div class= "col s11">
+          {{> afQuickField name=this.name options=afOptionsFromSchema}}
+              </div>
+            <div class= "col s1 right">
+                {{> afQuickHelp collectionTitle=collection.title collectionName=collection.name name=this.name}}
+                {{> afQuickEdit collectionName=collection.name name=this.name options=afOptionsFromSchema}}
+            </div>
+        </div>
+        {{/if }}
+        {{/each}}
+     {{/autoForm}}
+
+     </div>
+   {{/ Layout }}
+   {{# Layout template=materializeButtons }}
+     <a href="{{ collection.indexPath }}" class="waves-effect waves-light btn {{ orion_autoformLoading }}">{{ i18n 'global.cancel' }}</a>
+     <a class="waves-effect waves-light btn light-blue accent-4 create-btn {{ orion_autoformLoading }}" href="#">{{ i18n 'global.create' }}</a>
+   {{/ Layout }}
+ {{/ if }}
+</template>
+
+<template name="orionMaterializeCollectionsDelete_XP">
+ {{# Layout template=materializeHeader }}
+   {{ i18n 'collections.delete.title' collection.singularName }}
+ {{/ Layout }}
+ {{# Layout template=materializeContent }}
+ <div class="floating-btn-onheader">
+      <a href="{{ collection.indexPath }}" class="btn-floating btn-large waves-effect waves-light {{GetColorIconBack}} right">
+        <i class="material-icons">reply</i>
+      </a>
+    </div>
+   <p>{{ i18n 'collections.delete.confirmQuestion' collection.singularName }}</p>
+ {{/ Layout }}
+ {{# if item.canShowRemove }}
+   {{# Layout template=materializeButtons }}
+     <a class="waves-effect waves-light btn {{ orion_autoformLoading }}" href="{{ collection.indexPath }}">{{ i18n 'global.cancel' }}</a>
+     <a class="waves-effect waves-light btn red confirm-mydelete {{ orion_autoformLoading }}" href="#">{{ i18n 'global.confirm' }}</a>
+   {{/ Layout }}
+ {{/ if }}
+</template>
+
+<template name="reportes">
+ {{# Layout template=materializeHeader }}
+ <i class="material-icons small">label_outline</i> {{ collection.title }}
+ {{> tabularQuickHelp  collectionName=collection.title help=collection.help width='70%' }}
+  {{/ Layout }} {{# Layout template=materializeContent }}
+
+
+ <div class="floating-btn-onheader">
+   <a href="{{ getParentPath }}" class="btn-floating btn-large waves-effect waves-light blue right">
+     <i class="material-icons">reply</i>
+   </a>
+ </div>
+ {{# if collection.isGraphic }} {{> graficos_Template graphCollection=collection }} {{else}} {{# if collection.isCalendar }} {{> calendarios_Template graphCollection=collection }}
+ {{else}}
+{{# if collection.isQuery }}
+{{> UI.dynamic template=collection.queryTemplate data=collection }}
+ {{else}}
+ {{# if collection.canShowCreate }}
+ <div class="floating-btn">
+   <a href="{{ collection.createPath }}" class="btn-floating btn-large waves-effect waves-light red right" style="position: relative; top:25px; right:0px;">
+     <i class="material-icons">add</i>
+   </a>
+ </div>
+ {{/ if }} {{# if collection.canIndex }} {{# if showTable }}
+ <div class="row admin-index-table" id="tab_img">
+   <div class="col s12 yellow lighten-5 black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+  {{#if esNotificaciones collection.name}}
+       {{> notificaciones_Template collection=collection}}
+     {{else}}
+
+
+       <h1>omar</h1>
+     {{/ if}}
+   </div>
+ </div>
+
+ <br>
+ <br>
+ <br>
+
+ <!--button class="mio">Empleados</button-->
+ {{/ if }} {{/ if }} {{/ if }}  {{/ if }} {{/ if }} {{/ Layout }}
+</template>
+
+<template name="orionMaterializeCollectionsIndex_XP">
+ {{# Layout template=materializeHeader }}
+ <i class="material-icons small">label_outline</i> {{ collection.title }}
+ {{> tabularQuickHelp  collectionName=collection.title help=collection.help width='70%' }}
+  {{/ Layout }} {{# Layout template=materializeContent }}
+
+ <div class="floating-btn-onheader">
+   <a href="{{ getParentPath }}" class="btn-floating btn-large waves-effect waves-light {{IconColorIndex}} right">
+     <i class="material-icons">reply</i>
+   </a>
+ </div>
+ {{# if collection.isGraphic }} {{> graficos_Template graphCollection=collection }} {{else}} {{# if collection.isCalendar }} {{> calendarios_Template graphCollection=collection }}
+ {{else}}
+{{# if collection.isQuery }}
+{{> UI.dynamic template=collection.queryTemplate data=collection }}
+ {{else}}
+ {{# if collection.canShowCreate }}
+    {{#if collection.CanAdd}}
+       <div class="floating-btn">
+         <a href="{{ collection.createPath }}" class="btn-floating btn-large waves-effect waves-light {{IconColorCreate}} right" style="position: relative; top:25px; right:0px;">
+           <i class="material-icons">add</i>
+         </a>
+       </div>
+    {{/if}}
+ {{/ if }}
+ {{# if collection.canIndex }} {{# if showTable }}
+ <div class="row admin-index-table" id="tab_img">
+   <div class="col s12 {{ColorTabularIndex}}" style="padding:20px;border-radius: 10px 10px;">
+     {{#if collection.ShowFilter}}
+        {{>FiltroCollection collectionName=collection.name}}
+      {{/if}}
+  {{#if esNotificaciones collection.name}}
+       {{> notificaciones_Template collection=collection}}
+     {{else}}
+           {{#if Comentar}}
+              {{#if justificantes collection.name}}
+                {{> tabular table=TabularTables.Justificantes selector=Selector_MyRecordsX class="table display compact bordered"}}
+              {{else}}
+                {{> tabular table=collection.tabularTable selector=selector class="table display compact bordered" id="dataTables" }}
+              {{/if}}
+           {{else}}
+              {{#if persons collection.name}}
+                {{> tabularExporter table=personsTabular selector=selector}}
+                {{> tabular table=personsTabular selector=selector class="table bordered"}}
+              {{else}}
+                {{> tabularExporter table=collection.tabularTable selector=selector}}
+                {{> tabular table=collection.tabularTable selector=selector class="table display compact bordered" id="dataTables" }}
+              {{/if}}
+           {{/if}}
+     {{/ if}}
+   </div>
+ </div>
+
+ <br>
+ <br>
+ <br>
+
+ <!--button class="mio">Empleados</button-->
+ {{/ if }} {{/ if }} {{/ if }}  {{/ if }} {{/ if }} {{/ Layout }}
+</template>
+
+<template name="orionMaterializeCollectionsSelectIndex_XP">
+<div id="myModal" class="modal fade" style="border-radius: 10px 10px;">
+ <div class="row">
+   <div class="col s12 yellow lighten-5 black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+     {{# with myCollection}}
+     {{> tabular table=myCollection.tabularTable class="table highlight bordered" id="selectableTable" }}
+     {{ /with}}
+   </div>
+ </div>
+</div>
+</template>
+
+<template name="orionMaterializeCollectionsUpdate_XP">
+ {{# Layout template=materializeHeader }}
+   <i class="material-icons small">edit</i> {{ i18n 'collections.update.title' collection.singularName }}
+ {{/ Layout }}
+ {{# Layout template=materializeContent }}
+ <div class="floating-btn-onheader">
+      <a href="{{ collection.indexPath }}" class="btn-floating btn-large waves-effect waves-light {{GetColorIconBack}} right">
+        <i class="material-icons">reply</i>
+      </a>
+    </div>
+   {{#if Template.subscriptionsReady}}
+   {{getValueToUse}}
+   <div class= "{{ColorTabularIndex}}" style="padding:20px;border-radius: 10px 10px;">
+     {{> sAlert }}
+     {{#autoForm  collection=collection doc=item id="orionMaterializeCollectionsUpdateForm_XP" type="update" buttonContent=false  omitFields=collection.getHiddenFields  }}
+     {{#each afFieldNames}}
+     {{#if showField collection.pluralName this.name }}
+     <div class= "row">
+       <div class= "col s11">
+       {{> afQuickField name=this.name options=afOptionsFromSchema}}
+           </div>
+         <div class= "col s1 right">
+             {{> afQuickHelp collectionTitle=collection.title collectionName=collection.name name=this.name}}
+             {{> afQuickEdit collectionName=collection.name name=this.name options=afOptionsFromSchema}}
+         </div>
+     </div>
+     {{/if }}
+     {{/each}}
+  {{/autoForm}}
+
+     </div>
+   {{/ if }}
+ {{/ Layout }}
+ {{# Layout template=materializeButtons }}
+     <a href="{{ collection.indexPath }}" class="waves-effect waves-light btn {{ orion_autoformLoading }}">{{ i18n 'global.cancel' }}</a>
+     {{# if item.canShowRemove }}
+       <a class="waves-effect waves-light btn red {{ orion_autoformLoading }}" href="{{ collection.deletePath item._id }}">{{ i18n 'global.delete' }}</a>
+     {{/ if }}
+     <a class="waves-effect waves-light btn light-blue accent-4 save-btn {{ orion_autoformLoading }}" href="#">{{ i18n 'global.save' }}</a>
+ {{/ Layout }}
+</template>

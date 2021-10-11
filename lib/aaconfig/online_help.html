@@ -1,0 +1,231 @@
+
+<template name="usar_editar_Template">
+<div  style="border-radius: 10px 10px;">
+</div>
+</template>
+
+
+<template name="orionMaterializeCollectionsSelectIndex_XPM">
+<div id="myModal" class="modal fade" style="border-radius: 10px 10px;">
+  INNER SelectIndex
+  <div class="row">
+    <div class="col s12 m12 l12 yellow lighten-5 black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+      {{# with myCollection}}
+      {{> tabular table=myCollection.tabularTable class="table highlight bordered" id="selectableTable" }}
+      {{ /with}}
+    </div>
+  </div>
+</div>
+</template>
+
+<template name="orionMaterializeCollectionsIndex_XPM">
+ <div class="card blue lighten-1 white-text" style="padding:20px;vertical-align:middle;border-radius:10px 10px 0px 0px;width:100%;">
+  <i class="material-icons small" style="padding:5px;vertical-align:middle;">label_outline</i> {{ collection.title }}
+  {{> tabularQuickHelp  collectionName=collection.title help=collection.help width=auto}}
+</div>
+  {{# if collection.isGraphic }} {{> graficos_Template graphCollection=collection }} {{else}} {{# if collection.isCalendar }} {{> calendarios_Template graphCollection=collection }}
+  {{else}}
+{{# if collection.isQuery }}
+{{> UI.dynamic template=collection.queryTemplate data=collection }}
+  {{else}}
+  {{# if collection.canShowCreate }}
+  <div class="floating-btn">
+    <a class="btn-floating btn-medium waves-effect waves-light red right add-recordx" style="position: relative; top:-33px; right:0px;">
+      <i class="material-icons">add</i>
+    </a>
+  </div>
+
+  {{/ if }}
+  <div style="padding:20px">
+  {{# if collection.canIndex }}
+    {{# if showTable }}
+      {{#if esNotificaciones collection.name}}
+        {{> notificaciones_Template collection=collection}}
+      {{else}}
+        {{> tabular table=collection.tabularTable class="table bordered" id=collection.pluralName }}
+      {{/ if}}
+    {{/ if }}
+  {{/ if }}
+  <br>
+  <br>
+</div>
+  {{/ if }}
+  {{/ if }}
+  {{/ if }}
+  {{# Layout template=materializeButtons }}
+    <a href="{{ collection.indexPath }}" class="waves-effect waves-light btn {{ orion_autoformLoading }} cancel-create">{{ i18n 'global.cancel' }}</a>
+  {{/ Layout }}
+</template>
+
+<template name="orionMaterializeCollectionsCreate_XPM">
+  {{# if collection.canShowCreate }}
+  <div class="card blue lighten-1 white-text" style="padding:20px;vertical-align:middle;border-radius:10px 10px 0px 0px;width:100%;">
+     <i class="material-icons small" style="padding:0px;vertical-align:middle;">playlist_add</i> Crear {{ collection.singularName }}
+     {{> tabularQuickHelp  collectionName=collection.title help=collection.help width=auto}}
+    </div>
+    <div class="floating-btn">
+         <a class="btn-floating btn-medium waves-effect waves-light blue right return-index" style="position: relative; top:-33px; right:0px;z-index:100;">
+           <i class="material-icons">reply</i>
+         </a>
+       </div>
+      <div style="padding:20px">
+       {{#autoForm  collection=collection id="orionMaterializeCollectionsCreateForm_XPM" type="insert" buttonContent=false  omitFields=collection.getHiddenFields  }}
+        {{#each afFieldNames}}
+        {{#if showField collection.pluralName this.name }}
+          <div class= "row" style="width:95%;margin-bottom:0px !important;margin-top:0px !important;">
+            <div class= "col s11 m11 l11">
+              {{> afQuickField name=this.name options=afOptionsFromSchema}}
+            </div>
+            <div class= "col s1 m1 l1 left">
+              {{> afQuickHelp collectionTitle=collection.title collectionName=collection.name name=this.name}}
+            </div>
+          </div>
+        {{/if }}
+        {{/each}}
+
+        {{# Layout template=materializeButtons }}
+          <a href="{{ collection.indexPath }}" class="waves-effect waves-light btn {{ orion_autoformLoading }} cancel-create">{{ i18n 'global.cancel' }}</a>
+          <button type="submit" class="waves-effect waves-light btn light-blue accent-4 create-btnxpm {{ orion_autoformLoading }}">{{ i18n 'global.create' }}</button>
+        {{/ Layout }}
+
+      {{/autoForm}}
+      </div>
+
+  {{/ if }}
+</template>
+
+<template name="orionMaterializeCollectionsUpdate_XPM">
+  <div class="card blue lighten-1 white-text" style="padding:20px;vertical-align:middle;border-radius:10px 10px 0px 0px;width:100%;">
+   <i class="material-icons small" style="padding:5px;vertical-align:middle;">edit</i>{{ i18n 'collections.update.title' collection.singularName }}
+   {{> tabularQuickHelp  collectionName=collection.title help=collection.help width=auto}}
+  </div>
+  <div class="floating-btn">
+    <a class="btn-floating btn-medium waves-effect waves-light blue right return-index" style="position: relative; top:-33px; right:0px;z-index:100;">
+      <i class="material-icons">reply</i>
+    </a>
+  </div>
+    <div style="padding:20px">
+        {{#autoForm  collection=collection doc=item id="orionMaterializeCollectionsUpdateForm_XPM" type="update" buttonContent=false omitFields=collection.getHiddenFields  }}
+          {{#each afFieldNames}}
+          {{#if showField collection.pluralName this.name }}
+            <div class= "row" style="width:95%;">
+              <div class= "col s11 m11 l11" style="font-size:10px;">
+                {{> afQuickField name=this.name options=afOptionsFromSchema}}
+              </div>
+              <div class= "col s1 m1 l1 left">
+                {{> afQuickHelp collectionTitle=collection.title collectionName=collection.name name=this.name}}
+              </div>
+            </div>
+          {{/if }}
+		     {{/each}}
+        {{/autoForm}}
+      </div>
+        {{# Layout template=materializeButtons }}
+          <a href="{{ collection.indexPath }}" class="waves-effect waves-light btn {{ orion_autoformLoading }} cancel-update">{{ i18n 'global.cancel' }}</a>
+          {{# if item.canShowRemove }}
+            <a class="waves-effect waves-light btn red {{ orion_autoformLoading }} delete-record">{{ i18n 'global.delete' }}</a>
+          {{/ if }}
+          <a class="waves-effect waves-light btn light-blue accent-4 save-btn {{ orion_autoformLoading }} update-record">{{ i18n 'global.save' }}</a>
+          {{/ Layout }}
+</template>
+
+<template name="orionMaterializeCollectionsDelete_XPM">
+  {{# Layout template=materializeHeader }}
+
+    {{ i18n 'collections.delete.title' collection.singularName }}
+  {{/ Layout }}
+  {{# Layout template=materializeContent }}
+  INNER Delete
+  <div class="floating-btn-onheader">
+       <a href="{{ collection.indexPath }}" class="btn-floating btn-large waves-effect waves-light green right">
+         <i class="material-icons">reply</i>
+       </a>
+     </div>
+    <p>{{ i18n 'collections.delete.confirmQuestion' collection.singularName }}</p>
+  {{/ Layout }}
+  {{# if item.canShowRemove }}
+    {{# Layout template=materializeButtons }}
+      <a class="waves-effect waves-light btn {{ orion_autoformLoading }}" href="{{ collection.indexPath }}">{{ i18n 'global.cancel' }}</a>
+      <a class="waves-effect waves-light btn red confirm-mydelete {{ orion_autoformLoading }}" href="#">{{ i18n 'global.confirm' }}</a>
+    {{/ Layout }}
+  {{/ if }}
+</template>
+
+<template name="afQuickHelp">
+ {{#if isHiddenInput}}
+ {{else}}
+  <a class="btn-flat waves-effect waves-light yellow lighten-5 blue-text show-help" style="text-align:center;width:15px"><i class="tiny material-icons">info</i>
+  </a>
+
+  {{#if showMessage}}
+  <div class="row">
+     <div class="col s12 m12  yellow lighten-4 black-text z-depth-3" style="padding:5px;5px;50px;50px;position:absolute;align:left;margin:0px 0px 0px -60%;width:60%;z-index:100;border-radius:10px;">
+            <h5><b>{{displayName}}</b></h5>
+            <br>
+           <b>Descripción:</b> <h6>{{{displayHelp}}}</h6>
+           <br>
+              <b>Ejemplo:</b>  <h6>{{{displayExample}}}</h6>
+         </div>
+   </div>
+ {{/if}}
+{{/if}}
+</template>
+
+<template name="afQuickEdit">
+
+ {{#if isHiddenInput}}
+ {{else}}
+ {{#if isForeign}}
+ <!--a class="btn-flat waves-effect waves-light   yellow lighten-5 blue-text  add-foreign" style="text-align:center;width:15px;"><i class="tiny material-icons">menu</i>
+ </a-->
+   {{/if}}
+{{/if}}
+   {{#if showMessage}}
+
+   {{#if isListing}}
+   <div class="row" style="position:relative;margin-left:-1700%;margin-top:-20%;width:1800%;height:90%;z-index:1000">
+      <div class="col s12 m12 l12" style="padding:5px;5px;5px;5px;align:left;height:500px;z-index:100;border-radius:10px;">
+        <div class="card yellow lighten-5 black-text z-depth-3" style="border-radius:10px;">
+        {{>orionMaterializeCollectionsIndex_XPM fieldName=name collection=getCurrentCollectionToPlay}}
+      </div>
+    </div>
+    </div>
+ {{/if}}
+     {{#if isCreating}}
+     <div class="row" style="position:relative;margin-left:-1700%;margin-top:-20%;width:1800%;height:90%;z-index:1000">
+        <div class="col s12 m12 l12" style="padding:5px;5px;5px;5px;align:left;height:500px;z-index:100;border-radius:10px;">
+          <div class="card yellow lighten-5 black-text z-depth-3" style="border-radius:10px;">
+          {{>orionMaterializeCollectionsCreate_XPM fieldName=name collection=getCurrentCollectionToPlay}}
+        </div>
+      </div>
+      </div>
+       {{/if}}
+       {{#if isUpdating}}
+       <div class="row" style="position:relative;margin-left:-1700%;margin-top:-20%;width:1800%;height:90%;z-index:1000">
+          <div class="col s12 m12 l12" style="padding:5px;5px;5px;5px;align:left;height:500px;z-index:100;border-radius:10px;">
+            <div class="card yellow lighten-5 black-text z-depth-3" style="border-radius:10px;">
+            {{>orionMaterializeCollectionsUpdate_XPM fieldName=name collection=getCurrentCollectionToPlay item=getRecordToUpdate}}
+          </div>
+        </div>
+        </div>
+    {{/if}}
+  {{/if}}
+</template>
+
+<template name="tabularQuickHelp">
+  <!-- COLOR DEL BOTON DE AYUDA EN EL TITULO -->
+  <a  class="btn-flat tiny waves-effect waves-light {{color}}  white-text center help">   <i class="material-icons">info</i>
+  </a>
+   {{#if showMessage}}
+   <div class="row">
+      <div class="col s12 m12 l12" style="padding:0px 0px 0px 50px;width:95%;">
+        <div class="card yellow lighten-4 black-text" style="border-radius:5px;">
+          <div class="card-content">
+            <b>{{collectionName}}</b>
+            <h6>{{help}}</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+</template>

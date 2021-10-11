@@ -1,0 +1,33 @@
+<template name="updateFace">
+  <div id="ModalUpdateFace" class="modal fade" style="border-radius: 10px 10px;">
+     <div align="right">
+       <a class="modal-action modal-close btn-floating secondary-content waves-effect waves-green btn-flat" align="right">
+         <i class="medium material-icons">exit_to_app</i>
+       </a>
+     </div>
+     <div class="modal-header" style=" color:#fff; padding:9px 15px; border-bottom:1px solid #eee; background-color: #3a4699;align:center">
+       <h5>Actualizar / Agregar Imagen</h5>
+     </div>
+     <div class="modal-content">
+       <div class="row">
+         <div class="col s12 yellow lighten-5 black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+           <div class="row">
+
+             <div class="col s4">
+                <label for="face_to_upload" class="waves-effect waves-light btn-large blue darken-1 IsUpdateFace">Cargar Imagen
+                <i class="material-icons">attach_file</i>
+                </label>
+                <input type="file" id="face_to_upload" accept="image/*" style="visibility:hidden;">
+             </div>
+
+             <div class="col s8">
+               <p class="flow-text">{{ResultadoUpdateFace}}</p>
+             </div>
+
+           </div>
+
+         </div>
+       </div>
+     </div>
+   </div>
+</template>

@@ -1,0 +1,31 @@
+<template name="orionMaterializeCollectionsReports_Emp">
+  {{# Layout template=materializeHeader }}
+  <i class="material-icons small">label_outline</i>
+  Reportes de Asistencia
+  {{> tabularQuickHelp  collectionName=collection.title help=collection.help width='70%' }}
+  {{/ Layout }}
+  {{# Layout template=materializeContent }}
+  <div class="floating-btn-onheader">
+    <a href="{{ getParentPath }}" class="btn-floating btn-large waves-effect waves-light {{GetColorIconBack}} right">
+      <i class="material-icons">reply</i>
+    </a>
+  </div>
+
+  {{# if collection.canIndex }}
+  <div class="row">
+    {{> sAlert}}
+    <div class="row">
+      <div class="{{ColorTabularIndex}}" style="padding:20px;border-radius: 10px 10px;">
+        {{> tabular table=getEmps selector=myemp class="table bordered"}}
+      </div>
+    </div>
+  </div>
+  {{/ if }}
+  {{/ Layout }}
+</template>
+<template name="empleado_template">
+  <a class="btn-floating waves-effect waves-light blue" id="asistencias"><i class="material-icons">description</i></a>
+</template>
+<template name="subsempleado_template">
+  <a class="btn-floating waves-effect waves-light blue" id="asistencias"><i class="material-icons">description</i></a>
+</template>

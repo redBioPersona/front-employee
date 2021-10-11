@@ -1,0 +1,93 @@
+<template name="orionMaterializeCollectionsIndex_Reports_Empleado">
+<style>
+a.noclick{ pointer-events: none; }
+.vacaciones{
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background: #90caf9;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+#texto-vacaciones{
+  font-weight: bold;
+  position: absolute;
+}
+
+.permisos{
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  background: #0bec4a;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+#texto-permisos{
+  font-weight: bold;
+  position: absolute;
+}
+tfoot th{
+  text-align: center;
+}
+tbody td{
+  text-align: center;
+}
+</style>
+
+
+{{# Layout template=materializeHeader }}
+<i class="material-icons small">label_outline</i>
+Reportes de Asistencia
+{{> tabularQuickHelp  collectionName=collection.title help=collection.help width='70%' }}
+{{/ Layout }}
+{{# Layout template=materializeContent }}
+<div class="floating-btn-onheader">
+  <a href="{{ getParentPath }}" class="btn-floating btn-large waves-effect waves-light green darken-2 right">
+    <i class="material-icons">reply</i>
+  </a>
+</div>
+
+{{# if collection.canIndex }}
+<div class="row">
+  {{> sAlert}}
+  <div class="row">
+    <ul class="collapsible" data-collapsible="accordion">
+      <li>
+        <div class="card-action collapsible-header flow-text roundallcorners" id="objetivos">
+          <i class="material-icons">done_all</i>Búsqueda</div>
+          <div class="collapsible-body white">
+            <div class="card-content white" id="pic_div_obj" name="pic_div_obj">
+              <div class="card-content black-text">
+                {{>search_report}}
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="card-action collapsible-header flow-text roundallcorners" id="objetivos">
+            <i class="material-icons">done_all</i>Datos</div>
+            <div class="collapsible-body white">
+              <div class="card-content white" id="pic_div_obj" name="pic_div_obj">
+                {{> tabular table=getLiv_totales_det_vwTabular selector=selector_reports class="table bordered"}}
+              </div>
+              <div class="vacaciones"></div>
+              <span id="texto-vacaciones">Vacaciones</span>
+              <br>
+              <div class="permisos"></div>
+              <span id="texto-permisos">Permisos</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    {{/ if }}
+    {{/ Layout }}
+    <script>
+    $(document).ready(function(){
+      // $('.collapsible').collapsible({ accordion: false });
+      $('.collapsible').collapsible();
+    });
+    </script>
+  </template>

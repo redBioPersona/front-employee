@@ -1,0 +1,453 @@
+<template name="orionMaterializeCollectionsIndex_XPz">
+  <style>
+    a.noclick {
+      pointer-events: none;
+    }
+    .modal { width: 85% !important ;}
+  </style>
+  {{# Layout template=materializeHeader }}
+  <i class="material-icons small">label_outline</i>
+  Crear un nuevo Enrolamiento {{> tabularQuickHelp collectionName=collection.title help=collection.help width='70%' }}
+  {{/Layout}} {{# Layout template=materializeContent }}
+  <div class="floating-btn-onheader">
+    <a href="{{ getParentPath }}" class="btn-floating btn-large waves-effect waves-light {{GetColorIconBack}} right">
+      <i class="material-icons">reply</i>
+    </a>
+  </div>
+  <div class="row">
+    {{> sAlert}}
+    <div id="njm" class="{{ColorTabularIndex}}">
+    <div class="row" id="mensajes">
+        <div class="col s12">
+          <div class="card red">
+            <div class="card-content white-text">
+              <p id="instrucciones"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s12">
+        <div class="container">
+          <div class="mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__supporting-text">
+              <div class="mdl-stepper-horizontal-alternative">
+                <div id="stepper1" class="mdl-stepper-step active-step editable-step">
+                  <div class="mdl-stepper-circle"><span>1</span></div>
+                  <div class="mdl-stepper-title">Datos</div>
+                  <div class="mdl-stepper-optional">Datos del Colaborador</div>
+                  <div class="mdl-stepper-bar-left"></div>
+                  <div class="mdl-stepper-bar-right"></div>
+                </div>
+                <div id="stepper2" class="mdl-stepper-step">
+                  <div class="mdl-stepper-circle"><span>2</span></div>
+                  <div class="mdl-stepper-title">Biometría</div>
+                  <div class="mdl-stepper-optional">Biometría Dactilar</div>
+                  <div class="mdl-stepper-bar-left"></div>
+                  <div class="mdl-stepper-bar-right"></div>
+                </div>
+                <div id="stepper3" class="mdl-stepper-step">
+                  <div class="mdl-stepper-circle"><span>3</span></div>
+                  <div class="mdl-stepper-title">Fotografía</div>
+                  <div class="mdl-stepper-optional">Biometría Facial</div>
+                  <div class="mdl-stepper-bar-left"></div>
+                  <div class="mdl-stepper-bar-right"></div>
+                </div>
+                <div id="stepper4" class="mdl-stepper-step">
+                  <div class="mdl-stepper-circle"><span>4</span></div>
+                  <div class="mdl-stepper-title">Firma</div>
+                  <div class="mdl-stepper-bar-left"></div>
+                  <div class="mdl-stepper-bar-right"></div>
+                </div>
+                <div id="stepper5" class="mdl-stepper-step">
+                  <div class="mdl-stepper-circle"><span>5</span></div>
+                  <div class="mdl-stepper-title">Documentos</div>
+                  <div class="mdl-stepper-optional">Documentos del Emleado</div>
+                  <div class="mdl-stepper-bar-left"></div>
+                  <div class="mdl-stepper-bar-right"></div>
+                </div>
+                <div id="stepper6" class="mdl-stepper-step">
+                  <div class="mdl-stepper-circle"><span>6</span></div>
+                  <div class="mdl-stepper-title">Finalizar</div>
+                  <div class="mdl-stepper-bar-left"></div>
+                  <div class="mdl-stepper-bar-right"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end HORIZONTAL STEPPER -->
+
+
+          <div class="stepper">
+             <!-- STEP 1 -->
+            <div id="step1" class="step">
+              <div class="row">
+                  <div class="{{ColorTabularIndex}}" style="padding-top:20px;border-radius: 10px 10px;">
+                      {{#autoForm collection="Employees" id="orionMaterializeCollectionsCreateForm_XPz" type="insert"}}
+
+                      <div class="row">
+                        <div class="col s4"> {{> afQuickField name="idcompany" icon='none'}} </div>
+                        <div class="col s4"> {{> afQuickField name="idLocation" icon='none'}} </div>
+                        <div class="col s4"> {{> afQuickField name="idEmpStatus" icon='none'}} </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col s3"> {{> afQuickField name="idEmployee" icon='format_list_numbered'}} </div>
+                        <div class="col s9"> {{> afQuickField name="employeeName" icon='assignment_ind'}} </div>
+                      </div>
+                      
+                      <div class="row">
+                        <div class="col s6"> {{> afQuickField name="idmanager" icon='none'}} </div>
+                        <div class="col s6"> {{> afQuickField name="idDepartment" icon='none'}} </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col s6"> {{> afQuickField name="idEmpPosition" options="allowed" firstOption="(Seleccione una opción)" icon='none'}} </div>
+                        <div class="col s6"> {{> afQuickField name="empEmail" icon='email'}} </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col s6"> {{> afQuickField name="empPhoneNbr" icon='phone'}} </div>
+                        <div class="col s6"> {{> afQuickField name="empCellNbr" icon='phone_iphone'}} </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col s4"> {{> afQuickField name="cumple" icon='cake'}} </div>
+                        <div class="col s4"> {{> afQuickField name="hireDate" icon='date_range'}} </div>
+                        <div class="col s4"> {{> afQuickField name="idpagadora" icon='attach_money'}} </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col s4"> {{> afQuickField name="idDireccion"}} </div>
+                        <div class="col s4"> {{> afQuickField name="idArea"}} </div>
+                        <div class="col s4"> {{> afQuickField name="idProyecto"}} </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col s3"> {{> afQuickField name="mealsEmp"}} </div>
+                        <div class="col s3"> {{> afQuickField name="permissionEnrol"}} </div>
+                        <div class="col s3"> {{> afQuickField name="active"}} </div>
+                        <div class="col s3"> {{> afQuickField name="roles" options="allowed" noselect=true}} </div>
+                      </div>
+                      {{/autoForm}} {{# Layout template=materializeButtons }}
+                      <a href="{{ collection.indexPath }}" class="waves-effect waves-light btn {{ orion_autoformLoading }}">{{ i18n 'global.cancel' }}</a>
+                      <a class="waves-effect waves-light btn light-blue accent-4 create-btn {{ orion_autoformLoading }}" href="#">{{ i18n 'global.create' }}</a>
+                      {{/ Layout }}
+
+                    </div>
+              </div>
+            </div>
+            <!-- STEP 2 -->
+            <div id="step2" class="step hide">
+              <div class="row">
+                  <div class="{{ColorTabularIndex}}" style="padding-top:20px;border-radius: 10px 10px;">
+                          {{>TmplUpdateFingers}}
+                  </div>
+              </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div id="step3" class="step hide">
+              <div class="row">
+                <div class="{{ColorTabularIndex}}" style="padding-top:20px;border-radius: 10px 10px;">
+                  <div class="row" style="padding:20px">
+                    <div class="col s8">
+                      {{>viewfinder}}
+                    </div>
+                    <div class="col s4 teal darken-2">
+                      <form>
+                        <div class="row">
+                          <div class="input-field col s12">
+                            <i class="material-icons prefix">more_horiz</i>
+                            <label for="txt_status_face_enroll" class="white-text">Estatus: {{txt_status_face_enroll}}</label>
+                            <br>
+                            <br>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="row" style="padding:30px">
+                    <div class="col s4">
+                      <a class="waves-effect waves-light btn-large orange" align="center" id="capture_face">
+                        <i class="material-icons right">tag_faces</i>
+                        CAPTURAR</a>
+                    </div>
+                    <div class="col s4">
+                      <a class="waves-effect waves-light btn-large red darken-1" align="center" id="cancel_face">
+                        <i class="material-icons right">cancel</i>
+                        CANCELAR ENROLAMIENTO</a>
+                    </div>
+                    <div class="col s4">
+                      <a class="waves-effect waves-light btn-large blue darken-1 hide" align="center" id="continue_face">
+                        <i class="material-icons right">trending_flat</i>
+                        CONTINUAR</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div id="step4" class="step hide">
+                <div class="row">
+                    <div class="center-align">
+                      <input name="groupSign" type="radio" id="sign_device" />
+                      <label for="sign_device">Mediante Dispositivo</label>
+                      <input name="groupSign" type="radio" id="sign_touch" />
+                      <label for="sign_touch">Mediante Touch</label>
+                    </div>
+                  </div>
+                  {{#if using_touch}}
+                  <div class="row">
+                    {{>sigpad}}
+                  </div>
+                  {{else}}
+                  <div class="row center-align">
+                    <canvas id="cnv" name="cnv" style="width:90%;height:300px;padding-left:10px"></canvas>
+                    <form name="FORM1">
+                      <TEXTAREA class="hide" NAME="sigRawData" ROWS="20" COLS="50">Signature Raw Data: </TEXTAREA>
+                      <TEXTAREA class="hide" NAME="sigImageData" ROWS="20" COLS="50">Signature Image Data: </TEXTAREA>
+                      <INPUT TYPE=HIDDEN NAME="bioSigData">
+                      <INPUT TYPE=HIDDEN NAME="sigImgData">
+                    </form>
+                  </div>
+                  <div class="row center-align">
+                    {{# Layout template=materializeButtons }}
+                    <a class="waves-effect waves-light btn-large orange darken-1" id="StartSign">
+                      <i class="material-icons right">cached</i> INICIAR DISPOSITIVO</a>
+                    <a class="waves-effect waves-light btn-large green darken-1 save_sign {{ orion_autoformLoading }}" href="#">
+                      <i class="material-icons right">save</i> GUARDAR</a>
+                    <a class="waves-effect waves-light btn-large blue darken-1" id="continue_sign">
+                      <i class="material-icons right">trending_flat</i> SALTAR</a>
+                    {{/ Layout }}
+                  </div>
+                  {{/if}}
+            </div>
+
+            <!-- STEP 5 -->
+            <div id="step5" class="step hide">
+              <div class="row">
+                <div class="{{ColorTabularIndex}}" style="padding-top:20px;border-radius: 10px 10px;">
+                    <div class="row">
+                        <div class="col s12">
+                          {{#autoForm collection="Documents_temp" id="orionMaterializeCollectionsCreateDocumentsForm" type="insert"}}
+                          <div class="input-field col s12">
+                            {{> afQuickField name="documents" id='documents' template='documents_template'}}
+                          </div>
+                          {{/autoForm}} {{# Layout template=materializeButtons }}
+                          <a class="waves-effect waves-light btn light-blue accent-4 create-btn-doc {{ orion_autoformLoading }}" href="#">GUARDAR DOCUMENTOS</a>
+                          <a class="waves-effect waves-light btn blue darken-1" id="continue_docs">
+                            <i class="material-icons right">trending_flat</i>{{document_info}}</a>
+                          {{/ Layout }}
+                        </div>
+                      </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- STEP 6 -->
+            <div id="step6" class="step hide">
+              <div class="row">
+                <div class="{{ColorTabularIndex}}" style="padding-top:20px;border-radius: 10px 10px;">
+                    <div class="row">
+                        <div class="col s3">
+                          {{#if Can_enroll_face}}
+                          <div class="card">
+                            <div class="card-move-up teal waves-effect waves-block waves-light" align="center">
+                              <div class="move-up">
+                                <img src="{{fin_face}}" width="100%" height="auto" alt="">
+                              </div>
+                            </div>
+                          </div>
+                          {{/if}}
+                          <br> {{#if Can_enroll_sign}}
+                          <div class="card">
+                            <div class="card-move-up teal waves-effect waves-block waves-light" align="center">
+                              <div class="move-up">
+                                <img src="{{fin_sign}}" width="100%" height="auto" alt="">
+                              </div>
+                            </div>
+                          </div>
+                          {{/if}}
+                        </div>
+                        <div class="col s9">
+                          <div class="card">
+                            <div class="card-content  teal darken-2">
+                              <div class="line-chart-wrapper">
+                                <p class="margin white-text">Datos del Colaborador</p>
+                                <div class="row white-text">
+                                  <form class="col s12">
+
+                                    <div class="row">
+                                      <div class="input-field col s3">
+                                        <i class="material-icons prefix">format_list_numbered</i>
+                                        <input id="icon_prefix" type="text" readonly value="{{fin_emp_num}}" class="validate">
+                                      </div>
+                                      <div class="input-field col s9">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="icon_prefix" type="text" readonly value="{{fin_emp_name}}" class="validate">
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="input-field col s6">
+                                        <i class="material-icons prefix">grade</i>
+                                        <input id="icon_prefix" type="text" readonly value="{{fin_emp_pos}}" class="validate">
+                                      </div>
+                                      <div class="input-field col s6">
+                                        <i class="material-icons prefix">menu</i>
+                                        <input id="icon_prefix" type="text" readonly value="{{fin_emp_sta}}" class="validate">
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="input-field col s4">
+                                        <i class="material-icons prefix">business</i>
+                                        <input id="icon_prefix" type="text" readonly value="{{fin_emp_comp}}" class="validate">
+                                      </div>
+                                      <div class="input-field col s4">
+                                        <i class="material-icons prefix">location_city</i>
+                                        <input id="icon_prefix" type="text" readonly value="{{fin_emp_depto}}" class="validate">
+                                      </div>
+                                      <div class="input-field col s4">
+                                        <i class="material-icons prefix">add_location</i>
+                                        <input id="icon_prefix" type="text" readonly value="{{fin_emp_location}}" class="validate">
+                                      </div>
+                                    </div>
+
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="fixed-action-btn vertical click-to-toggle">
+                          <a id="menu_toggle" class="btn-floating btn-large orange">
+                            <i class="material-icons">menu</i>
+                          </a>
+                          <ul>
+                            <li>
+                              <a class="btn-floating btn-large red" id="fin_cancel">
+                                <i class="material-icons">delete</i>
+                              </a>
+                            </li>
+                            <li>
+                              <a class="btn-floating btn-large green darken-1" id="fin_save">
+                                <i class="material-icons">save</i>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                      {{#each value in fingers_enroll_biometric}}
+
+                          <div class="col s6">
+                            <div align="center">
+                              <p align="center">{{value.name}}</p>
+                            </div>
+
+                            <div class="col s6">
+                              <div class="card">
+                                <div class="card-move-up teal waves-effect waves-block waves-light" align="center">
+                                  <div class="move-up">
+                                    <img src="/img/finger1.jpg" width="100%" height="auto" alt="">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col s6">
+                              <div class="card">
+                                <div class="card-move-up teal waves-effect waves-block waves-light" align="center">
+                                  <div class="move-up">
+                                    <img src="/img/finger2.jpg" width="100%" height="auto" alt="">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            </div>
+
+
+                      {{/each}}
+                    </div>
+
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{/ Layout }}
+  <div id="ModalShowAviso" class="modal fade" style="border-radius: 10px 10px;">
+    <div class="modal-header" style=" color:#fff; padding:9px 15px; border-bottom:1px solid #eee; background-color: #3a4699;align:center">
+      <h5>Aviso de privacidad</h5>
+    </div>
+    <div class="modal-content">
+      <div class="row center-align">
+        <div class="col s12 z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+            {{{AvisoPrivacidad}}}
+        </div>
+        <div class="col s6" style="padding:20px;border-radius: 10px 10px;">
+            <a class="waves-effect waves-light btn-large green darken-3 center-align" id="AceptarAviso" href="#">
+              <i class="material-icons left">done_all</i>Aceptar aviso</a>
+        </div>
+        <div class="col s6" style="padding:20px;border-radius: 10px 10px;">
+            <a class="waves-effect waves-light btn-large red darken-3 center-align"  id="RechazarAviso" href="#">
+                <i class="material-icons right">delete_sweep</i>Rechazar aviso</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="afArrayField_documents_template">
+  <div class="collection white z-depth-2" style="border-radius:10px 10px 10px 10px;">
+    <div class="collection-item white black-text" data-schema-key="{{schemaKey}}">
+      Documentos del Colaborador{{#afEachArrayItem name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
+      <div class="row collection-item white" style="border-radius:10px 10px">
+        <div class="col l11 m11 s11">
+          {{>act_det}}
+        </div>
+        <div class="col l1 m1 s1">
+          {{#if afArrayFieldHasMoreThanMinimum name=../atts.name minCount=../atts.minCount maxCount=../atts.maxCount}}
+          <div class="collection-item white black-text">
+            <button type="button" class="btn-floating autoform-remove-item red">
+              <i class="material-icons">delete</i>
+            </button>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+      {{/afEachArrayItem}}
+    </div>
+    <div class="collection-item white black-text">
+      {{#if afArrayFieldHasLessThanMaximum name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
+      <br/>
+      <button type="button" class="btn-floating autoform-add-item btn-default left" data-autoform-field="{{atts.name}}" data-autoform-minCount="{{atts.minCount}}"
+        data-autoform-maxCount="{{atts.maxCount}}">
+        <i class="material-icons">add</i>
+      </button>
+      <br/>
+      <br/> {{/if}}
+    </div>
+  </div>
+</template>
+
+<template name="act_det">
+  <div class="row white black-text" style="border-radius:10px 10px 10px 10px;">
+    <div class="col s12 m12 l12">
+      {{> afQuickField id=this.current.name name=this.current.name}}
+    </div>
+    <div class="col s12 m12 l12">
+      {{> afQuickField id=this.current.file name=this.current.file}}
+    </div>
+  </div>
+</template>

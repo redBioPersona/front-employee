@@ -1,0 +1,91 @@
+<template name="orionMaterializeAccountsUpdate_XP">
+  <form class="roles">
+    {{# Layout template=materializeHeader }}
+      <i class="material-icons small">supervisor_account</i> {{ i18n 'accounts.update.title' }}
+      <small>
+        {{ user.profile.name }}
+      </small>
+    {{/ Layout }}
+    {{# Layout template=materializeContent }}
+    <div class="floating-btn-onheader">
+     <a href="/admin/accounts" class="btn-floating btn-large waves-effect waves-light blue right">
+       <i class="material-icons">reply</i>
+     </a>
+   </div>
+<div class="card-panel yellow lighten-5 black-text z-depth-2" style="border-radius: 10px 10px 10px 10px;">
+      {{# autoForm id="accountsUpdateEmailsForm" schema=emailsSchema type="method-update" doc=user meteormethod="orionAccountsUpdateEmails" template="materialize_XP"}}
+        {{> afQuickField name='emails' class=""}}
+        <br>
+      <button class="waves-effect waves-light btn light-blue accent-4">{{ i18n 'global.save' }}</button>
+      {{/ autoForm }}
+    </div>
+
+      <br>
+      <div class="divider"></div>
+
+      <br>
+      <div class="card-panel yellow lighten-5 black-text z-depth-2" style="border-radius: 10px 10px 10px 10px;">
+        <h4>{{ i18n 'accounts.update.sections.profile.title' }}</h4>
+        {{# autoForm id="accountsUpdateProfileForm" schema=profileSchema type="method-update" doc=user meteormethod="orionAccountsUpdateProfile" }}
+          {{> afQuickFields name='profile' }}
+          <br>
+          <button class="waves-effect waves-light btn light-blue accent-4">{{ i18n 'global.save' }}</button>
+        {{/ autoForm }}
+      </div>
+
+      <br>
+      <div class="divider"></div>
+
+      <br>
+      <div class="card-panel yellow lighten-5 black-text z-depth-2" style="border-radius: 10px 10px 10px 10px;">
+        <h4>{{ i18n 'accounts.update.sections.roles.title' }}</h4>
+        {{# each roles }}
+          <p>
+            {{# if hasRole this }}
+              <input type="checkbox" role="{{ this }}" id="input-role-{{this}}" checked/>
+            {{ else }}
+              <input type="checkbox" role="{{ this }}" id="input-role-{{this}}"/>
+            {{/ if }}
+            <label for="input-role-{{this}}">{{ this }}</label>
+          </p>
+        {{/ each }}
+        <br>
+        <button class="waves-effect waves-light btn light-blue accent-4 btn-save">{{ i18n 'global.save' }}</button>
+      </div>
+
+      <br>
+      <div class="divider"></div>
+
+      <br>
+      <div class="card-panel yellow lighten-5 black-text z-depth-2" style="border-radius: 10px 10px 10px 10px;">
+        <h4>{{ i18n 'accounts.update.sections.changePassword.title' }}</h4>
+        {{# autoForm id="accountsUpdatePasswordForm" schema=passwordSchema type="method-update" doc=user meteormethod="orionAccountsUpdatePassword" }}
+          {{> afQuickField name='password' }}
+          {{> afQuickField name='confirm' }}
+          <br>
+          <button class="waves-effect waves-light btn light-blue accent-4">{{ i18n 'global.save' }}</button>
+        {{/ autoForm }}
+      </div>
+
+      <br>
+      <div class="divider"></div>
+
+      <br>
+      <div class="card-panel yellow lighten-5 black-text z-depth-2" style="border-radius: 10px 10px 10px 10px;">
+        <h4>{{ i18n 'accounts.update.sections.deleteUser.title' }}</h4>
+        <p class="red-text">{{ i18n 'accounts.update.sections.deleteUser.advice' }}</p>
+
+        {{# if confirmDelete }}
+          <button id="btnConfirmDeleteUser" class="waves-effect waves-light btn red" user="{{user._id}}">
+            {{ i18n 'global.confirm' }}
+          </button>
+        {{ else }}
+          <button id="btnDeleteUser" class="waves-effect waves-light btn red" user="{{user._id}}">
+            {{ i18n 'accounts.update.sections.deleteUser.button' }}
+          </button>
+        {{/ if }}
+      </div>
+
+    {{/ Layout }}
+  </form>
+</template>

@@ -1,0 +1,137 @@
+<template name="TmplUpdateFingers">
+  <div class="row" style="padding:20px">
+    <div class="col s5">
+      <div class="left-align">
+        <p class="flow-text center-align {{getFingersEnrolled}}">Seleccione el dedo a capturar/cargar</p>
+        <form id="FormGroupSignE" method="post" action="">
+          <table class="responsive-table">
+            <tbody>
+
+              <tr>
+                <td>
+                  <input name="groupSign" type="radio" id="left_pulgares" />
+                  <label for="left_pulgares">Pulgar Izquierdo</label>
+                </td>
+                <td>
+                  <input name="groupSign" type="radio" id="right_pulgars" />
+                  <label for="right_pulgars">Pulgar Derecho</label>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <input name="groupSign" type="radio" id="left__indices" />
+                  <label for="left__indices">Indice Izquierdo</label>
+                </td>
+                <td>
+                  <input name="groupSign" type="radio" id="right_indices" />
+                  <label for="right_indices">Indice Derecho</label>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <input name="groupSign" type="radio" id="left___medios" />
+                  <label for="left___medios">Medio Izquierdo</label>
+                </td>
+                <td>
+                  <input name="groupSign" type="radio" id="right__medios" />
+                  <label for="right__medios">Medio Derecho</label>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <input name="groupSign" type="radio" id="left_anulares" />
+                  <label for="left_anulares">Anular Izquierdo</label>
+                </td>
+                <td>
+                  <input name="groupSign" type="radio" id="right__anular" />
+                  <label for="right__anular">Anular Derecho</label>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <input name="groupSign" type="radio" id="left_meniques" />
+                  <label for="left_meniques">Meñique Izquierdo</label>
+                </td>
+                <td>
+                  <input name="groupSign" type="radio" id="right_menique" />
+                  <label for="right_menique">Meñique Derecho</label>
+                </td>
+              </tr>
+
+              {{#if IsModal}}
+              {{else}}
+              <tr style="background-color:#666666">
+                <td>
+                  <input name="groupSign" type="radio" id="no_fingers_na" />
+                  <label class="white-text" for="no_fingers_na">Dedos Amputados</label>
+                </td>
+                <td>
+                  <input name="groupSign" type="radio" id="no_fingers_xx" />
+                  <label class="white-text" for="no_fingers_xx">Dedos Vendados</label>
+                </td>
+              </tr>
+              {{/if}}
+
+
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+
+    <div class="col s7">
+      <div class="row">
+        <div class="col s12 teal darken-2">
+          <form>
+            <div class="row left-align">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">graphic_eq</i>
+                <label for="txt_process_left_enroll" class="white-text">Proceso: {{ResultadoUpdateFinger}}</label>
+                <br>
+                <br>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <br>
+        <div class="col s12">
+          <div style="width:100%">
+            <a class="waves-effect waves-light btn-large green {{IsUpdateFingerDevices}}" id="biometric_capture_finger">
+              <i class="material-icons right">fingerprint</i>Capturar desde el sensor
+            </a>
+          </div>
+          <br>
+
+          <div style="width:100%">
+            <label for="finger_to_upload" class="waves-effect waves-light btn-large blue darken-1 {{IsUpdateFingerValidator}}">
+              Cargar desde un archivo
+              <i class="material-icons">attach_file</i>
+            </label>
+            <input type="file" id="finger_to_upload" accept="image/*,.wsq" style="visibility:hidden;">
+          </div>
+
+          {{#if IsModal}}
+          {{else}}
+          <div style="width:100%">
+            <a class="waves-effect waves-light btn-large red darken-1" id="biometric_continue_finger">
+                <i class="material-icons right">arrow_forward</i>
+                Continuar Proceso</a>
+          </div>
+          <br>
+
+          <a class="waves-effect waves-light btn-large orange darken-1" align="center" id="biometric_cancel_finger">
+            <i class="material-icons right">cancel</i>Cancelar enrolamiento
+          </a>
+          {{/if}}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

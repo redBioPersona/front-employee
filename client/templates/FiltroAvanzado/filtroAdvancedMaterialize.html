@@ -1,0 +1,138 @@
+<template name="FilterOBV">
+    <div class="filter_block" id="FilterOBV">
+    </div>
+</template>
+
+<template name="SimpleFilterOBV">
+    <div class="FlexOBV" id="SimpleFilterOBV{{no}}">
+        {{> FilterFieldsOBV}}
+        {{> FilterExtraOBV}}
+    </div>
+</template>
+
+<template name="FilterExtraOBV">
+    <div id="FilterOperatorsOBV{{no}}" style="padding-right: 10px"></div>
+    <div id="FilterButtonDeleteOBV{{no}}"></div>
+</template>
+
+<template name="FilterFieldsOBV">
+    <div class="dropdown">
+        <div class="FilterFieldsOBV" style="padding-right: 10px">
+            {{#if isBootstrap}}
+                <button class="btn btn-lg dropdown-toggle" id="field{{no}}" type="button" data-toggle="dropdown" aria-expanded="true">    
+                    <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+                    {{title}}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" id="dropdown-menu_fields{{no}}" role="menu" aria-labelledby="field{{no}}" style="position: inherit">
+                {{#each fields}}
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this.label}}</a></li>
+                {{/each}}
+                </ul>
+            {{else}}
+                <ul class="dropdown-content" id="dropdown-menu_fields" aria-labelledby="field{{no}}" style="position: inherit">
+                    {{#each fields}}
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this.label}}</a></li>
+                    {{/each}}
+                </ul>
+
+                <button class="dropdown-button btn" id="field{{no}}" data-activates="dropdown-menu_fields">    
+                    <i class="material-icons right">arrow_drop_down</i>
+                    {{title}}
+                    <span class="caret"></span>
+                </button>                  
+            {{/if}}
+        </div>
+    </div>
+    <div id="FieldOperationsOBV{{no}}" style="padding-right:5px"></div>
+    <div id="FieldValueOBV{{no}}" style="padding-right:10px"></div>
+    <script>
+        $(document).ready(function(){
+            $('select').material_select();
+            $('.dropdown-button').dropdown();
+        });
+    </script>
+</template>
+
+<template name="ButtonLocationsOBV">
+    <div id="FieldButtonOBV"></div><br>
+</template>
+
+<template name="FilterOperationsOBV">
+    {{#if isBootstrap}}
+        <div class="dropdown">
+            <button class="btn btn-lg dropdown-toggle" id="operator{{no}}" type="button" data-toggle="dropdown"
+                aria-expanded="true">
+                {{first}}
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" id="dropdown-menu_operations{{no}}" role="menu" aria-labelledby="operator{{no}}">
+                {{#each all}}
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this}}</a></li>
+                {{/each}}
+            </ul>
+        </div>
+    {{else}}
+        <div class="dropdown">
+            <ul class="dropdown-content" id="dropdown-menu_operations" aria-labelledby="operator{{no}}" style="position: inherit">
+                {{#each all}}
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">{{this}}</a></li>
+                {{/each}}
+            </ul>
+
+            <button class="dropdown-button btn" id="operator{{no}}" data-activates="dropdown-menu_operations">
+                {{first}}
+                <span class="caret"></span>
+            </button>
+
+        </div>
+    {{/if}} 
+</template>
+
+<template name="FilterInputOBV">
+    <input class="FilterInputOBV form-control" style="min-width: 280px;" type="text" id="filter_value{{no}}"
+        placeholder="{{input_value_placeholder}}">
+</template>
+
+<template name="FilterSelectOBV">
+    <select class="form-control FilterSelectOBV" id="filter_value{{no}}">
+        <option selected disabled>Seleccion una opción</option>
+        {{#each operators}}}}
+            <option value="{{key}}">{{label}}</option>
+        {{/each}}
+    </select>
+</template>
+
+<template name="FiltroDate">
+    <input class="col-lg-12 form-control" style="min-width: 280px;" type="date" id="filter_value{{no}}"
+        placeholder="Pick a date">
+</template>
+
+<template name="FilterButtonOBV">
+    <button class="btn btn-lg" id="call_filter" type="button">
+        {{#if isBootstrap}}
+            <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>
+        {{else}}
+            <i class="material-icons">find_in_page</i>
+        {{/if}}
+    </button>
+</template>
+
+<template name="FilterButtonDeleteOBV" style="padding-right: 10px">
+    <button class="btn btn-lg delete_filter" id="delete_filter{{no}}" type="button">
+        {{#if isBootstrap}}
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            {{else}}
+                <i class="material-icons">delete_sweep</i>
+        {{/if}}
+        </button>
+</template>
+
+<template name="FilterOperatorsOBV" style="padding-right: 10px">
+    <select class="FilterOperatorsOBV form-control" id="FilterOperatorsOBV_values{{no}}">
+        <option selected disabled>Seleccion una opción</option>
+        {{#each operators}}
+        <option value="{{key}}">{{label}}</option>
+        {{/each}}
+    </select>
+</template>

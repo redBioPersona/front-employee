@@ -1,0 +1,32 @@
+<template name="orionMaterializeCollectionsIndex_grafica_deptos">
+  {{# Layout template=materializeHeader }}
+  <i class="material-icons small">label_outline</i>Departamentos
+  {{> tabularQuickHelp  collectionName=collection.title help=collection.help width='70%' }}
+  {{/ Layout }} {{# Layout template=materializeContent }}
+  <div class="floating-btn-onheader">
+    <a href="{{ getParentPath }}" class="btn-floating btn-large waves-effect waves-light {{GetColorIconBack}} right">
+      <i class="material-icons">reply</i>
+    </a>
+  </div>
+  <div class="row">
+    <div class="white lighten-5 black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+      <div class="card green lighten-5 center">
+        <div class="card-content white">
+          {{>FiltroDepartamentos}}
+          <div class="row no-padding" >
+            <div id="grafica_deptos" class="grafica_deptos" style="height:400px; width:100%;" ></div>
+          </div>
+          <div class="divider"></div>
+            <select class="browser-default" id="deptoSelect" style="padding-left:20px">
+              <option value="" disabled selected>Seleccione un Departamento a visualizar</option>
+            </select>
+
+          <div class="row no-padding" >
+            <div id="grafica_deptos_emp" class="grafica_deptos_emp center-align" style="height:400px; width:100%;" ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/ Layout }}
+</template>

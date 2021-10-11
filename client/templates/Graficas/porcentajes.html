@@ -1,0 +1,29 @@
+<template name="orionMaterializeCollectionsIndex_Porcentajes">
+  {{# Layout template=materializeHeader }}
+  <i class="material-icons small">label_outline</i>Porcentajes de Asitencia
+  {{> tabularQuickHelp  collectionName=collection.title help=collection.help width='70%' }}
+  {{/ Layout }} {{# Layout template=materializeContent }}
+  <div class="floating-btn-onheader">
+    <a href="{{ getParentPath }}" class="btn-floating btn-large waves-effect waves-light {{GetColorIconBack}} right">
+      <i class="material-icons">reply</i>
+    </a>
+  </div>
+  <div class="row">
+    <!-- <div class="card-action collapsible-header flow-text roundallcorners" id="objetivos">
+      <i class="material-icons">done_all</i>Datos</div> -->
+      <div class="white lighten-5 black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+        <div class="card green lighten-5 center">
+          <div class="card-action green lighten-4 ">
+            <h6 class="flow-text">Porcentajes Generales</h6>
+          </div>
+          <div class="divider"></div>
+          <div class="card-content white">
+            <div class="row no-padding" >
+              <div id="grafica_procentajes" class="grafica_procentajes" style="height:500px; width:100%;" ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/ Layout }}
+  </template>

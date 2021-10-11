@@ -1,0 +1,44 @@
+<template name="nicolaslopezj_orionExporter_materialize">
+  {{# Layout template=materializeHeader }}
+      Exportar/Importar
+  {{/ Layout }}
+  {{# Layout template=materializeContent }}
+
+   <div class="yellow lighten-5 black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+    {{# with currentError }}
+      <div class="red">
+        <b>[{{ error }}]</b> {{ reason }}
+      </div>
+    {{/ with }}
+    <p>
+      <b>Exportar</b>
+    </p>
+    <p class="grey-text">
+      Exportar todas las colecciones de Orion y el Diccionario.
+    </p>
+    <p>
+      <a href="#" class="btn btn-export">Exportar</a>
+      <a href="#" class="btn btn-export-with-users">Exportar con usuarios</a>
+    </p>
+    <div class="divider"></div>
+    <p>
+      <b>Importar</b>
+    </p>
+    <p class="grey-text">
+      Elimina toda la información de las colecciones de Orion y e diccionario y las reemplaza con las provistas en el archivo.
+    </p>
+    {{# if isLoading }}
+    <p>
+      <b>Importando datos...</b>
+    </p>
+    {{ else }}
+    <p>
+      <span class="btn btn-file">
+          Importar <input type="file" name="file" class="input-import">
+      </span>
+    </p>
+    {{/ if }}
+
+  </div>
+  {{/ Layout }}
+</template>

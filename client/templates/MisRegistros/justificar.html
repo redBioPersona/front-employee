@@ -1,0 +1,40 @@
+<template name="justificar_template">
+<style> .modal { width: 85% !important ;} </style>
+{{#if datos}}
+<a class="btn-floating waves-effect waves-light blue" id="asistencias"><i class="material-icons">description</i></a>
+{{/if}}
+<div id="tabular_table_justify" class="modal fade" style="border-radius: 10px 10px;">
+  <div align="right">
+    <a href="#!" class="modal-action modal-close btn-floating secondary-content waves-effect waves-green btn-flat" align="right">
+      <i class="medium material-icons">exit_to_app</i>
+    </a>
+  </div>
+  <div class="modal-header" style=" color:#fff; padding:9px 15px; border-bottom:1px solid #eee; background-color: #3a4699;align:center">
+    <h5>Justificar Falta del {{fecha}} </h5>
+  </div>
+  <div class="modal-content">
+    <div class="row">
+      <div class="col s12 yellow lighten-5 black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+        <div class="row">
+          {{#autoForm collection="Justificantes" id="justificar_template_XP" type="insert"}}
+          <fieldset>
+            {{> afQuickField name='razon' firstOption="(Select a)" }}
+            {{> afQuickField name='observaciones'}}
+            {{> afQuickField name='documento'}}
+            {{> afQuickField name='_idEmp' value=_idEmp type="hidden"}}
+            {{> afQuickField name='idEmp' value=idEmp type="hidden"}}
+            {{> afQuickField name='idEmpName' value=idEmpName type="hidden"}}
+            {{> afQuickField name='estatus' value=estatusX type="hidden"}}
+            {{> afQuickField name='fecha' value=fechaX type="hidden"}}
+            {{> afQuickField name='reporte' value=reporte type="hidden"}}
+          </fieldset>
+          <button type="submit" class="btn btn-primary waves-effect waves-light btn-large">
+            <i class="material-icons left">send</i>
+            Guardar Justificante</button>
+          {{/autoForm}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</template>

@@ -1,0 +1,24 @@
+<template name="orionMaterializeAccountsIndex_XP">
+  {{# Layout template=materializeHeader }}
+   <i class="material-icons small">supervisor_account</i> {{ i18n 'accounts.index.title' }}
+  {{/ Layout }}
+  {{# Layout template=materializeContent }}
+  <div class="floating-btn-onheader">
+   <a href="/admin/principal/ajustes" class="btn-floating btn-large waves-effect waves-light blue right">
+     <i class="material-icons">reply</i>
+   </a>
+ </div>
+    {{# if userHasPermission 'accounts.showCreate' }}
+      <div class="floating-btn-onheader">
+        <a href="{{ RouterLayerPathFor 'accounts.create' }}" class="btn-floating btn-large waves-effect waves-light red right" style="position: relative; top:45px; right:0px;">
+          <i class="material-icons">add</i>
+        </a>
+      </div>
+    {{/ if }}
+    <div class="row admin-index-table yellow lighten-5 black-text z-depth-2" style="border-radius:10px 10px 10px 10px;">
+      <div class="col s12">
+        {{> tabular table=table selector=selector class="table bordered index-table" id="orion_accounts_index" }}
+      </div>
+    </div>
+  {{/ Layout }}
+</template>

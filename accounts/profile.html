@@ -1,0 +1,21 @@
+<template name="orionMaterializeAccountProfile_XP">
+  {{# autoForm schema=getSchema id="updateProfileForm" collection="Meteor.users" type="update" doc=getDoc }}
+    {{# Layout template=materializeHeader }}
+    <i class="material-icons small">person</i> {{ i18n 'accounts.updateProfile.title' }}
+    {{/ Layout }}
+    {{# Layout template=materializeContent }}
+     <div class="floating-btn-onheader">
+       <a href="/admin/my-account" class="btn-floating btn-large waves-effect waves-light blue right">
+         <i class="material-icons">reply</i>
+       </a>
+     </div>
+  <div class="yellow lighten-5 black-text z-depth-2" style="border-radius:10px 10px 10px 10px;padding:10px 10px 10px 10px;">
+      {{> afQuickFields name='profile' }}
+    </div>
+    {{/ Layout }}
+    {{# Layout template=materializeButtons }}
+      <a href="{{ RouterLayerPathFor 'myAccount.index' }}" class="waves-effect waves-light btn">{{ i18n 'global.cancel' }}</a>
+      <button class="waves-effect waves-light btn light-blue accent-4">{{ i18n 'global.save' }}</button>
+    {{/ Layout }}
+  {{/ autoForm }}
+</template>

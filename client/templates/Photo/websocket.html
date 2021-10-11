@@ -1,0 +1,43 @@
+<template name="cameraX">
+  <div class="camera-overlay">
+    {{! used to make the background dark}}
+  </div>
+  <div class="camera-popup {{#if permissionDeniedError}}camera-popup-wide{{/if}}">
+    {{#if error}}
+    {{#if permissionDeniedError}}
+    {{> permissionDenied}}
+    {{else}}
+    {{#if browserNotSupportedError}}
+    {{> genericError message="Sorry, this browser is currently not supported for camera functionality."}}
+    {{else}}
+    {{> genericError message="There was an error accessing the camera."}}
+    {{/if}}
+    {{/if}}
+    {{else}}
+    {{#if photo}}
+    <div class="center">
+      <img src="{{photo}}" class="photo-preview" />
+      <div>
+        <button class="button use-photo">Use Photo</button>
+        <button class="button new-photo">Take New Photo</button>
+      </div>
+    </div>
+    {{else}}
+    {{> viewfinderX}}
+    {{/if}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="viewfinderX">
+  <video id="video"   width="320px" height="240px" class="{{#if waitingForPermission}}hidden{{/if}}" preload autoplay muted> </video>
+  <canvas id="canvas" width="320px" height="240px" style="padding:10px;position:absolute;z-index:2; top:0px; left:0px;"></canvas>
+  <canvas id="canvasvideo" width="640px" height="480px" style="padding:0px;display:none"></canvas>
+</template>
+
+<template name="genericErrorX">
+  <div class="generic-error">
+    <p>{{message}}</p>
+    <button class="button cancel">Close Popup</button>
+  </div>
+</template>

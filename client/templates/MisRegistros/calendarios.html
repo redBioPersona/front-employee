@@ -1,0 +1,109 @@
+<template name="calendarios_Template">
+  <style>
+  .vacaciones{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background: #b70920;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+  #texto-vacaciones{
+    font-weight: bold;
+    position: absolute;
+  }
+
+  .normal{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background: #3a87ad;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+  #texto-normal{
+    font-weight: bold;
+    position: absolute;
+  }
+
+  .permisos{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background: #a4b20a;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+  #texto-permisos{
+    font-weight: bold;
+    position: absolute;
+  }
+
+  .inhabil{
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background: #146d32;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+  }
+  #texto-inhabil{
+    font-weight: bold;
+    position: absolute;
+  }
+
+
+  </style>
+  {{# Layout template=materializeHeader }}
+  <i class="material-icons small">label_outline</i>
+  Mis registros de asistencia
+  {{> tabularQuickHelp  collectionName=collection.title help="Mis registros de asistencia" width='70%' }}
+  {{/ Layout }}
+  {{# Layout template=materializeContent }}
+  <div class="floating-btn-onheader">
+    <a href="{{ getParentPath }}" class="btn-floating btn-large waves-effect waves-light {{IconColorBack}} right">
+      <i class="material-icons">reply</i>
+    </a>
+  </div>
+  <div class="white lighten-5 black-text z-depth-2" style="padding:20px;border-radius: 10px 10px;">
+    <div class="">
+      <div class="card white" style="heigth:auto;width:100%;align:center">
+        <!-- <div class="card-content white"> -->
+          {{> fullcalendar
+              class="mainCalendar"
+              defaultTimedEventDuration= '24:00:00'
+              forceEventDuration=true
+              defaultView='month'
+              height="60%"
+              events=events
+              locale='es'
+              allDaySlot= true
+              validRange=validRanges
+              eventClick=onEventClicked
+          }}
+          <table class="responsive-table">
+                <tbody>
+                  <tr>
+                    <td>  <div class="vacaciones"></div><span id="texto-vacaciones">Faltas</span></td>
+                    <td>  <div class="permisos"></div><span id="texto-permisos">Retardos</span></td>
+                    <td>  <div class="normal"></div><span id="texto-normal">Asistencia</span></td>
+                    <td>  <div class="inhabil"></div><span id="texto-inhabil">Días Feriados</span></td>
+                  </tr>
+                </tbody>
+              </table>
+          {{>calendario_justificar}}
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+  {{/ Layout }}
+  <script>
+  $(document).ready(function(){
+    $('.tooltipped').tooltip({delay: 50});
+  });
+  </script>
+</template>

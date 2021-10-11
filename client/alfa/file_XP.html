@@ -1,0 +1,101 @@
+<template name="orionAttributesFileUploadXP">
+    <div class="row">
+        <div class="collection" style="border-radius:10px 10px 10px 10px;">
+        <div class="col l1 m1 s1">
+            <div class="collection-item yellow  lighten-5">
+                {{#if afArrayFieldHasLessThanMaximum name=atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
+                <br/>
+                    <button
+                        type="button"
+                        class="btn-floating autoform-add-item btn-default left"
+                        data-autoform-field="{{atts.name}}"
+                        data-autoform-minCount="{{atts.minCount}}"
+                        data-autoform-maxCount="{{atts.maxCount}}">
+                        <i class="material-icons">add</i>
+                    </button>
+                    <br/>
+                    <br/>
+                {{/if}}
+            </div>
+        </div>
+        <div class="col l11 m11 s11">
+            <div class="collection-item yellow  lighten-5" data-schema-key="{{schemaKey}}">
+            {{#afEachArrayItem name=atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
+                {{>orionFileAttr atts=this list=listHandler}}
+            {{/afEachArrayItem}}
+            </div>
+        </div>
+    </div>
+  </div>
+</template>
+
+<template name="orionFileAttr">
+    {{#if fileXP}}
+        <div class="chip blue lighten-5">
+            <img src="/img/text-file-5-xxl.png"/>
+            <a href="{{ fileXP.url }}" target="_blank">{{ fileXP.fileName }}</a>
+            <i class="close autoform-remove-item material-icons right">close</i>
+          </div>
+    {{ else }}
+      {{# if isUploadingXP }}
+        <div class="progress"><div class="progress-bar progress-bar-striped active" style="width: {{ progress }}%"></div></div>
+      {{ else }}
+      <br/>
+      <div class="btn btn-default btn-file btn-xs {{# if isUploadingXP }}disabled{{/ if }}">
+          <i class="material-icons tiny right">attach_file</i>
+          {{ i18n 'attributes.file.choose' }}
+          <input id={{this.atts.name}} type="file">
+      </div>
+      <br/>
+      {{/ if }}
+    {{/ if }}
+</template>
+
+<template name="orionAttributesFileUploadColumnXP">
+  {{# if value }}
+    {{#if esObj value}}
+        {{# if isImage value.url }}
+          <p><img class="data-table-image" src="{{ value.url }}"></p>
+        {{ else }}
+            <div class="lighten-5">
+                <i class="material-icons tiny left blue-text">insert_drive_file</i>
+                <a href="{{ value.url }}" target="_blank">{{ value.fileName }}</a>
+                {{#if esPDF value}}
+                    {{#if hasPermission}}
+                        {{>print_pdf_template value}}
+                    {{else}}
+                        <a href="{{ value.url }}" target="_blank" download="{{ value.fileName }}"><i class="material-icons tiny">file_download</i></a>
+                    {{/if}}
+                {{else}}
+                    <a href="{{ value.url }}" target="_blank" download="{{ value.fileName }}"><i class="material-icons tiny">file_download</i></a>
+                {{/if}}
+            </div>
+        {{/ if}}
+    {{else}}
+        {{#if esArray value}}
+            {{#each file in value}}
+                {{# if isImage file.url }}
+                  <p><img class="data-table-image" src="{{ file.url }}"></p>
+                {{ else}}
+                    <div class="lighten-5 tooltipped" data-position="bottom" data-delay="50" data-tooltip="this is an example of a tooltip">
+                        <i class="material-icons tiny left blue-text">insert_drive_file</i>
+                        <a href="{{ file.url }}" target="_blank">{{ file.fileName }}</a>
+                        {{#if esPDF file}}
+                            {{#if hasPermission}}
+                                {{>print_pdf_template file}}
+                            {{else}}
+                                <a href="{{ file.url }}" target="_blank" download="{{ file.fileName }}"> <i class="material-icons tiny">file_download</i></a>
+                            {{/if}}
+                        {{else}}
+                            <a href="{{ file.url }}" target="_blank" download="{{ file.fileName }}"> <i class="material-icons tiny">file_download</i></a>
+                        {{/if}}
+                    </div>
+                    <br/>
+                {{/ if}}
+            {{/each}}
+        {{/if}}
+    {{/ if }}
+  {{ else }}
+    <p class="help-block"><i>{{ i18n 'attributes.file.noFile' }}</i></p>
+  {{/ if }}
+</template>
