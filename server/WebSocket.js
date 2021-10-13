@@ -24,7 +24,7 @@ if (Meteor.isServer) {
 
   Meteor.startup(() => {
     if(Config_application.findOne({ "isServer": true }) ==undefined){
-      //ConnectWSDeviceManager();
+      ConnectWSDeviceManager();
     }
     var DataConfigApp=Config_application.findOne({});
     if(DataConfigApp){
