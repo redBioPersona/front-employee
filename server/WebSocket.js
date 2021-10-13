@@ -700,6 +700,8 @@ if (Meteor.isServer) {
           if(IdBiometricPerson!=undefined){
             obj["IdBiometricPerson"]=IdBiometricPerson;
           }
+          obj["Segmentation"]="dummySig";
+
           try{
             sendToWSValidator(JSON.stringify(obj));
             try { SendToVerificationWindow('{ "estatus":"Processing" }'); } catch (e) { }
